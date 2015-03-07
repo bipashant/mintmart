@@ -92,3 +92,6 @@ label
 .navbar-brand{
     padding-top:2px !important;
 }
+select option{
+   height:38px;
+}

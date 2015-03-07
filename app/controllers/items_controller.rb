@@ -1,31 +1,34 @@
 class ItemsController < ApplicationController
   require 'barby'
-
-
   before_action :set_item, only: [:show, :edit, :update, :destroy]
 
   # GET /items
   # GET /items.json
   def index
+    add_breadcrumb "ITEM", :items_path
     @items = Item.all
   end
 
   # GET /items/1
   # GET /items/1.json
   def show
+    add_breadcrumb "ITEM", :items_path
+    add_breadcrumb "SHOW", :item_path
   end
 
   # GET /items/new
   def new
+    add_breadcrumb "ITEM", :items_path
+    add_breadcrumb "NEW", :new_item_path
     @item = Item.new
-    # @barcode = Barby::EAN13.new('BSC0123456')
-    # @barcode_for_html = Barby::HtmlOutputter.new(@barcode)
-    # @barcode = raw @barcode_for_html.to_html
+    @categories=Category.all
 
   end
 
   # GET /items/1/edit
   def edit
+    add_breadcrumb "ITEM", :items_path
+    add_breadcrumb "UPDATE", :edit_item_path
   end
 
   # POST /items
@@ -63,7 +66,7 @@ class ItemsController < ApplicationController
   def destroy
     @item.destroy
     respond_to do |format|
-      format.html { redirect_to items_url, notice: 'Item was successfully destroyed.' }
+      format.html { redirect_to items_url, notice: 'Item was successfully deleted.' }
       format.json { head :no_content }
     end
   end

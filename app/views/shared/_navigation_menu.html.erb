@@ -19,9 +19,9 @@
           <a href="#"><i class="fa fa-database"></i><span> Category</span></a>
           <ul class="nav nav-pills nav-stacked">
 
-            <li><a href="#"><i class="glyphicon glyphicon-edit"></i><span> Register</span></a></li>
+            <li><a href= <%= new_category_path %> ><i class="glyphicon glyphicon-edit"></i><span> Register</span></a></li>
 
-            <li><a href="#"><i
+            <li><a href= <%= categories_path %> ><i
             class="glyphicon glyphicon-eye-open"></i><span> View</span></a></li>
           </ul>
         </li>
@@ -29,9 +29,9 @@
           <a href="#"><i class="fa fa-sitemap"></i><span> Items</span></a>
           <ul class="nav nav-pills nav-stacked">
 
-            <li><a href="#"><i class="glyphicon glyphicon-edit"></i><span> Register</span></a></li>
+            <li><a href=<%= new_item_path %>><i class="glyphicon glyphicon-edit"></i><span> Register</span></a></li>
 
-            <li><a href="#"><i
+            <li><a href=<%= items_path %>><i
             class="glyphicon glyphicon-eye-open"></i><span> View</span></a></li>
           </ul>
         </li>
@@ -39,9 +39,9 @@
           <a href="#"><i class="fa fa-sign-in"></i><span> Suppliers</span></a>
           <ul class="nav nav-pills nav-stacked">
 
-            <li><a href="#"><i class="glyphicon glyphicon-edit"></i><span> Register</span></a></li>
+            <li><a href=<%= new_supplier_path %>><i class="glyphicon glyphicon-edit"></i><span> Register</span></a></li>
 
-            <li><a href="#"><i
+            <li><a href=<%= suppliers_path %>><i
             class="glyphicon glyphicon-eye-open"></i><span> View</span></a></li>
           </ul>
         </li>

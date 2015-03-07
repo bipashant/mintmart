@@ -1,144 +1,127 @@
 <%= render 'shared/header'%>
-
-<%= render 'shared/navigation_menu'%>
-<%= render 'shared/breadcumb'%>
-<% render 'form' %>
-
-<% link_to 'Back', items_path %>
-
-<%= @barcode%>
-<% content_for :title, "Payment-MachPay" %>
-<!-- START PAGE CONTAINER -->
-<div class="page-container page-navigation-top-fixed page-fixed-width">
-  <!-- PAGE CONTENT -->
-  <div class="page-content">
-    <!-- PAGE CONTENT WRAPPER -->
-    <div class="page-content-wrap">
+<div class="ch-container">
+  <div class="row">
+    <%= render 'shared/navigation_menu'%>
+    <div id="content" class="col-lg-10 col-sm-10">
+      <!-- content starts -->
+      <%= render 'shared/breadcumb'%>
       <div class="row">
-        <div class="col-md-9">
-          <%= form_tag("/payments/pay", method: :post,class:'form-horizontal') do %>
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h3 class="panel-title"><strong>Add Items</strong></h3>
-                </div>
-                <div class="panel-body form-payment">
+        <div class="box col-md-12">
+          <div class="box-inner">
+            <div class="box-header well" data-original-title="">
+              <h2><i class="fa fa-sitemap"></i> Register new Item</h2>
+              <div class="box-icon">
+                <a href="#" class="btn btn-setting btn-round btn-default"><i class="glyphicon glyphicon-cog"></i></a>
+                <a href="#" class="btn btn-minimize btn-round btn-default"><i
+                class="glyphicon glyphicon-chevron-up"></i></a>
+                <a href="#" class="btn btn-close btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a>
+              </div>
+            </div>
+            <div class="box-content">
+              <%= form_for(@item) do |f| %>
                   <div class="row">
-                    <div class="col-md-10">
-                      <div class="col-md-6">
-                        <h3 class="text-center">Items Details </h3>
+                    <div class="box col-md-12">
+                      <div class="box-inner col-md-12">
+                        <div class="box-content">
+                          <div class="row margin-bottom">
+                            <div class="col-md-6">
+                              <div class="col-md-4">
+                                <%= f.label(:name,'Name') %>
+                              </div>
+                              <div class="col-md-8">
+                                <%= f.text_field :name,class: 'form-control',placeholder:' Name' %>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row margin-bottom">
+                            <div class="col-md-6">
+                              <div class="col-md-4">
+                                <%= f.label(:categories_id,'Category') %>
+                              </div>
+                              <div class="col-md-8">
+                                <%= f.number_field :categories_id,class: 'form-control',placeholder:' Name' %>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row margin-bottom">
+                            <div class="col-md-6">
+                              <div class="col-md-4">
+                                <%= f.label(:quantity,'Quantity') %>
+                              </div>
+                              <div class="col-md-8">
+                                <%= f.number_field :quantity,class: 'form-control',placeholder:'Quantity' %>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row margin-bottom">
+                            <div class="col-md-6">
+                              <div class="col-md-4">
+                                <%= f.label(:unit_price,'Unit Price') %>
+                              </div>
+                              <div class="col-md-8">
+                                <%= f.text_field :unit_price,class: 'form-control',placeholder:'Unit_price' %>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row margin-bottom">
+                            <div class="col-md-6">
+                              <div class="col-md-4">
+                                <%= f.label(:expiration_date,'Expired on') %>
+                              </div>
+                              <div class="col-md-8">
+                                <%= f.text_field :expiration_date,class: 'form-control',placeholder:'Expired on' %>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row margin-bottom">
+                            <div class="col-md-6">
+                              <div class="col-md-6">
+                              </div>
+                              <div class="col-md-4">
+                                <%= f.submit'Register',class: 'btn btn-default',id: 'create-customer-btn' %>
+                              </div>
 
-                        <div class="form-group">
-                          <%= label_tag(:name, "Item Name",class:'col-md-3 control-label')%>
-                          <div class="col-md-9 col-xs-12">
-                            <div class="input-group">
-                              <input type="text" name="items[][name]" value="Book" class="form-control" >
                             </div>
                           </div>
-                        </div>
-                        <div class="form-group">
-                          <%= label_tag(:description, "Description",class:'col-md-3 control-label')%>
-                          <div class="col-md-9 col-xs-12">
-                            <div class="input-group">
-                              <input type="text" name="items[][description]" value="Nice books" class="form-control" >
-                            </div>
-                          </div>
-                        </div>
-                        <div class="form-group">
-                          <%= label_tag(:rate, "Rate",class:'col-md-3 control-label')%>
-                          <div class="col-md-9 col-xs-12">
-                            <div class="input-group">
-                              <input type="text" name="items[][rate]" value="120" class="form-control" >
-                            </div>
-                          </div>
-                        </div>
-                        <div class="form-group">
-                          <%= label_tag(:quantity, "Quantity",class:'col-md-3 control-label')%>
-                          <div class="col-md-9 col-xs-12">
-                            <div class="input-group">
-                              <input type="text" name="items[][quantity]" value="100" class="form-control" >
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <h3 class="text-center">Items Details </h3>
-                        <div class="form-group">
-                          <%= label_tag(:name, "Item Name",class:'col-md-3 control-label')%>
-                          <div class="col-md-9 col-xs-12">
-                            <div class="input-group">
-                              <input type="text" name="items[][name]" value="Laptop" class="form-control" >
-                            </div>
-                          </div>
-                        </div>
-                        <div class="form-group">
-                          <%= label_tag(:description, "Description",class:'col-md-3 control-label')%>
-                          <div class="col-md-9 col-xs-12">
-                            <div class="input-group">
-                              <input type="text" name="items[][description]" value="Dell Laptop 5520" class="form-control" >
-                            </div>
-                          </div>
-                        </div>
-                        <div class="form-group">
-                          <%= label_tag(:rate, "Rate",class:'col-md-3 control-label')%>
 
-                          <div class="col-md-9 col-xs-12">
-                            <div class="input-group">
-                              <input type="text" name="items[][rate]" value="50000" class="form-control" >
-                            </div>
-                          </div>
-                        </div>
-                        <div class="form-group">
-                          <%= label_tag(:quantity, "Quantity",class:'col-md-3 control-label')%>
-
-                          <div class="col-md-9 col-xs-12">
-                            <div class="input-group">
-                              <input type="text" name="items[][quantity]" value="10" class="form-control">
-                            </div>
-                          </div>
-                        </div>
-
-                      </div>
-                      <div class="form-group">
-                        <div class="col-md-9 col-xs-12">
-                          <div class="input-group">
-
-                          </div>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <%= label_tag(:description, "Description",class:'col-md-3 control-label')%>
-
-                        <div class="col-md-9 col-xs-12">
-                          <div class="input-group">
-                            <input type="text" name="description" value="Nice Stuff" class="form-control">
-                          </div>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <%= label_tag(:total, "Total",class:'col-md-3 control-label')%>
-
-                        <div class="col-md-9 col-xs-12">
-                          <div class="input-group">
-                            <input type="text" name="total" value="512" class="form-control">
-                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <div class="panel-footer">
+              <% end %>
 
-                  <button class="btn btn-primary pull-right"><span class="fa fa-arrow-circle-right"></span> Pay </button>
-                </div>
-              </div>
-
-          <%end%>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <!-- END PAGE CONTENT WRAPPER -->
   </div>
-  <!-- END PAGE CONTENT -->
-</div>
-<!-- END PAGE CONTAINER -->
+  <hr>
 
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+       aria-hidden="true">
+
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">×</button>
+          <h3>Settings</h3>
+        </div>
+        <div class="modal-body">
+          <p>Here settings can be configured...</p>
+        </div>
+        <div class="modal-footer">
+          <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
+          <a href="#" class="btn btn-primary" data-dismiss="modal">Save changes</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="row">
+    <p class="col-md-9 col-sm-9 col-xs-12 copyright">&copy; <a href="#" target="_blank">Mint Mart</a>2015</p>
+  </footer>
+
+</div><!--/.fluid-container-->
+
+<%= render 'shared/logout_msgbox' %>

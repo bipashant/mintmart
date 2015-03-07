@@ -1,28 +1,27 @@
 class SuppliersController < ApplicationController
   before_action :set_supplier, only: [:show, :edit, :update, :destroy]
 
-  # GET /suppliers
-  # GET /suppliers.json
   def index
+    add_breadcrumb "SUPPLIER", :suppliers_path
     @suppliers = Supplier.all
   end
 
-  # GET /suppliers/1
-  # GET /suppliers/1.json
   def show
+    add_breadcrumb "SUPPLIER", :suppliers_path
+    add_breadcrumb "SHOW", :supplier_path
   end
 
-  # GET /suppliers/new
   def new
+    add_breadcrumb "SUPPLIER", :suppliers_path
+    add_breadcrumb "NEW", :new_supplier_path
     @supplier = Supplier.new
   end
 
-  # GET /suppliers/1/edit
   def edit
+    add_breadcrumb "SUPPLIER", :suppliers_path
+    add_breadcrumb "UPDATE", :edit_supplier_path
   end
 
-  # POST /suppliers
-  # POST /suppliers.json
   def create
     @supplier = Supplier.new(supplier_params)
 
@@ -37,8 +36,6 @@ class SuppliersController < ApplicationController
     end
   end
 
-  # PATCH/PUT /suppliers/1
-  # PATCH/PUT /suppliers/1.json
   def update
     respond_to do |format|
       if @supplier.update(supplier_params)
@@ -51,23 +48,19 @@ class SuppliersController < ApplicationController
     end
   end
 
-  # DELETE /suppliers/1
-  # DELETE /suppliers/1.json
   def destroy
     @supplier.destroy
     respond_to do |format|
-      format.html { redirect_to suppliers_url, notice: 'Supplier was successfully destroyed.' }
+      format.html { redirect_to suppliers_url, notice: 'Supplier was successfully deleted.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_supplier
       @supplier = Supplier.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def supplier_params
       params.require(:supplier).permit(:organization_name, :address, :contact_person, :contact_no)
     end

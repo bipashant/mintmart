@@ -24,10 +24,8 @@
                 <tr>
                   <th>Name</th>
                   <th>Address</th>
-                  <th>Phone</th>
                   <th>Registered Date</th>
                   <th>Purchased amount</th>
-                  <th>Status</th>
                   <th>Actions</th>
                 </tr>
                 </thead>
@@ -36,17 +34,13 @@
                     <tr id = "customer-<%=customer.id%>">
                       <td><%=customer.full_name %></td>
                       <td class="center"><%=customer.address %> </td>
-                      <td class="center"><%=customer.phone %> </td>
                       <td class="center"><%=customer.created_at.strftime('%m/%d/%Y') %> </td>
                       <td class="align_right">NRS <%= number_with_precision(customer.total_purchased_amount, precision: 2) %> </td>
                       <td class="center">
-                        <span class="label-success label label-default">Active</span>
-                      </td>
-                      <td class="center">
-
+                        <%= link_to ' <i class="glyphicon glyphicon-zoom-in icon-white"></i> View'.html_safe, customer_path(customer),class:'btn btn-success' %>
                         <%= link_to ' <i class="glyphicon glyphicon-edit icon-white"></i> Update'.html_safe, edit_customer_path(customer),class:'btn btn-info' %>
 
-                        <%= link_to '<i class="glyphicon glyphicon-trash icon-white"></i> Delete'.html_safe, customer_path(customer), remote: true, method: :destroy, data: { confirm: 'Are you sure?' },class:'btn btn-danger' %>
+                        <%= link_to '<i class="glyphicon glyphicon-trash icon-white"></i> Delete'.html_safe, customer_path(customer), method: :delete, data: { confirm: 'Are you sure?' },class:'btn btn-danger' %>
                       </td>
                     </tr>
                 <% end %>

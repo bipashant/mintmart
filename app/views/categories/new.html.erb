@@ -1,5 +1,97 @@
-<h1>New Category</h1>
+<%= render 'shared/header'%>
+<div class="ch-container">
+  <div class="row">
+    <%= render 'shared/navigation_menu'%>
+    <div id="content" class="col-lg-10 col-sm-10">
+      <!-- content starts -->
+      <%= render 'shared/breadcumb'%>
+      <div class="row">
+        <div class="box col-md-12">
+          <div class="box-inner">
+            <div class="box-header well" data-original-title="">
+              <h2><i class="fa fa-database"></i> Register new Category</h2>
+              <div class="box-icon">
+                <a href="#" class="btn btn-setting btn-round btn-default"><i class="glyphicon glyphicon-cog"></i></a>
+                <a href="#" class="btn btn-minimize btn-round btn-default"><i
+                class="glyphicon glyphicon-chevron-up"></i></a>
+                <a href="#" class="btn btn-close btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a>
+              </div>
+            </div>
+            <div class="box-content">
+              <%= form_for(@category) do |f| %>
+                  <div class="row">
+                    <div class="box col-md-12">
+                      <div class="box-inner col-md-12">
+                        <div class="box-content">
+                          <div class="row margin-bottom">
+                            <div class="col-md-6">
+                              <div class="col-md-4">
+                                <%= f.label(:name,'Name') %>
+                              </div>
+                              <div class="col-md-8">
+                                <%= f.text_field :name,class: 'form-control',placeholder:'Category Name' %>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row margin-bottom">
+                            <div class="col-md-6">
+                              <div class="col-md-4">
+                                <%= f.label(:suppliers_id,'Suppliers Name') %>
+                              </div>
+                              <div class="col-md-8">
+                                <%= f.select(:suppliers_id, options_from_collection_for_select(@suppliers, "id", "organization_name"), {prompt: 'Choose Suppliers'}, {class: 'form-control select'}) %>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row margin-bottom">
+                            <div class="col-md-6">
+                              <div class="col-md-6">
+                              </div>
+                              <div class="col-md-4">
+                                <%= f.submit'Register',class: 'btn btn-default',id: 'create-customer-btn' %>
+                              </div>
 
-<%= render 'form' %>
+                            </div>
+                          </div>
 
-<%= link_to 'Back', categories_path %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              <% end %>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+       aria-hidden="true">
+
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">×</button>
+          <h3>Settings</h3>
+        </div>
+        <div class="modal-body">
+          <p>Here settings can be configured...</p>
+        </div>
+        <div class="modal-footer">
+          <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
+          <a href="#" class="btn btn-primary" data-dismiss="modal">Save changes</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="row">
+    <p class="col-md-9 col-sm-9 col-xs-12 copyright">&copy; <a href="#" target="_blank">Mint Mart</a>2015</p>
+  </footer>
+
+</div><!--/.fluid-container-->
+
+<%= render 'shared/logout_msgbox' %>

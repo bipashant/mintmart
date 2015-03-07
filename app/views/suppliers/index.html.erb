@@ -1,33 +1,84 @@
-<p id="notice"><%= notice %></p>
+<%= render 'shared/header'%>
+<div class="ch-container">
+  <div class="row">
+    <%= render 'shared/navigation_menu'%>
+    <div id="content" class="col-lg-10 col-sm-10">
+      <!-- content starts -->
+      <%= render 'shared/breadcumb'%>
+      <div class="row">
+        <div class="box col-md-12">
+          <div class="box-inner">
+            <div class="box-header well" data-original-title="">
+              <h2><i class="fa fa-sign-in"></i> Suppliers List</h2>
+              <div class="box-icon">
+                <a href="#" class="btn btn-setting btn-round btn-default"><i class="glyphicon glyphicon-cog"></i></a>
+                <a href="#" class="btn btn-minimize btn-round btn-default"><i
+                class="glyphicon glyphicon-chevron-up"></i></a>
+                <a href="#" class="btn btn-close btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a>
+              </div>
+            </div>
+            <div class="box-content">
+              <table class="table table-striped table-bordered bootstrap-datatable datatable responsive">
+                <thead>
+                <tr>
+                  <th>Organization name</th>
+                  <th>Address</th>
+                  <th>Contact person</th>
+                  <th>Contact no</th>
+                  <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% @suppliers.each do |supplier| %>
+                    <tr>
+                      <td><%=supplier.organization_name%></td>
+                      <td class="center"><%=supplier.address %> </td>
+                      <td class="center"><%=supplier.contact_person %> </td>
+                      <td class="center"><%=supplier.contact_no %> </td>
+                      <td class="center">
+                        <%= link_to ' <i class="glyphicon glyphicon-zoom-in icon-white"></i> View'.html_safe, supplier_path(supplier),class:'btn btn-success' %>
+                        <%= link_to ' <i class="glyphicon glyphicon-edit icon-white"></i> Update'.html_safe, edit_supplier_path(supplier),class:'btn btn-info' %>
 
-<h1>Listing Suppliers</h1>
+                        <%= link_to '<i class="glyphicon glyphicon-trash icon-white"></i> Delete'.html_safe, supplier_path(supplier), method: :delete, data: { confirm: 'Are you sure?' },class:'btn btn-danger' %>
+                      </td>
+                    </tr>
+                <% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Organization name</th>
-      <th>Address</th>
-      <th>Contact person</th>
-      <th>Contact no</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+                </tbody>
+              </table>
 
-  <tbody>
-    <% @suppliers.each do |supplier| %>
-      <tr>
-        <td><%= supplier.organization_name %></td>
-        <td><%= supplier.address %></td>
-        <td><%= supplier.contact_person %></td>
-        <td><%= supplier.contact_no %></td>
-        <td><%= link_to 'Show', supplier %></td>
-        <td><%= link_to 'Edit', edit_supplier_path(supplier) %></td>
-        <td><%= link_to 'Destroy', supplier, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
 
-<br>
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+       aria-hidden="true">
 
-<%= link_to 'New Supplier', new_supplier_path %>
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">×</button>
+          <h3>Settings</h3>
+        </div>
+        <div class="modal-body">
+          <p>Here settings can be configured...</p>
+        </div>
+        <div class="modal-footer">
+          <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
+          <a href="#" class="btn btn-primary" data-dismiss="modal">Save changes</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="row">
+    <p class="col-md-9 col-sm-9 col-xs-12 copyright">&copy; <a href="#" target="_blank">Mint Mart</a>2015</p>
+  </footer>
+
+</div><!--/.fluid-container-->
+
+<%= render 'shared/logout_msgbox' %>
