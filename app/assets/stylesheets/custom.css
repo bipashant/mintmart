@@ -95,3 +95,58 @@ label
 select option{
    height:38px;
 }
+
+.xn-search input {
+    width: 200px;
+}
+.xn-search input {
+    width: 200px;
+    height: 30px;
+    padding: 0px 8px 0px 28px;
+    line-height: 25px;
+    border: 1px solid #CCC;
+    background: none repeat scroll 0% 0% #CCC;
+    color: #333;
+    transition: all 200ms ease 0s;
+    border-radius: 5px;
+}
+
+.xn-search {
+    padding: 10px 10px 0px 9px;
+    position: relative;
+}
+.xn-search input {
+    width: 200px;
+    height: 30px;
+    padding: 0px 8px 0px 28px;
+    line-height: 25px;
+    border: 1px solid #cccccc;
+    background: #cccccc;
+    color: #333;
+    -webkit-transition: all 200ms ease;
+    -moz-transition: all 200ms ease;
+    -ms-transition: all 200ms ease;
+    -o-transition: all 200ms ease;
+    transition: all 200ms ease;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+.xn-search input:focus {
+    width: 400px;
+}
+.xn-search:before {
+    content: "\f002";
+    font-family: FontAwesome;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    font-size: 17px;
+    line-height: 28px;
+    color: #333;
+    left: 10px;
+    top: 12px;
+    z-index: 2;
+    cursor: pointer;
+}
