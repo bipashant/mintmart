@@ -32,7 +32,7 @@
                 <% @categories.each do |category| %>
                     <tr>
                       <td><%=category.name %></td>
-                      <td class="align_right">0 Items</td>
+                      <td class="align_right"> <%= category.items.count%></td>
                       <td class="center"><%=category.created_at.strftime('%m/%d/%Y') %> </td>
                       <td class="center">
                         <%= link_to ' <i class="glyphicon glyphicon-zoom-in icon-white"></i> View'.html_safe, category_path(category),class:'btn btn-success' %>

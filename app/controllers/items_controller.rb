@@ -1,22 +1,28 @@
 class ItemsController < ApplicationController
+
+
   require 'barby'
+  require 'barby/barcode/ean_13'
+  require 'barby/barcode/code_128'
+  require 'barby/outputter/ascii_outputter'
+  require 'barby/outputter/html_outputter'
+
   before_action :set_item, only: [:show, :edit, :update, :destroy]
 
-  # GET /items
-  # GET /items.json
   def index
+    @barcode = Barby::Code128B.new('Bibek')
+    @barcode_for_html = Barby::HtmlOutputter.new(@barcode)
+   # @barcode_for_html.xdim = 1
+
     add_breadcrumb "ITEM", :items_path
     @items = Item.all
   end
 
-  # GET /items/1
-  # GET /items/1.json
   def show
     add_breadcrumb "ITEM", :items_path
     add_breadcrumb "SHOW", :item_path
   end
 
-  # GET /items/new
   def new
     add_breadcrumb "ITEM", :items_path
     add_breadcrumb "NEW", :new_item_path
@@ -25,30 +31,23 @@ class ItemsController < ApplicationController
 
   end
 
-  # GET /items/1/edit
   def edit
     add_breadcrumb "ITEM", :items_path
     add_breadcrumb "UPDATE", :edit_item_path
+    @categories=Category.all
   end
 
-  # POST /items
-  # POST /items.json
+
   def create
     @item = Item.new(item_params)
-
     respond_to do |format|
       if @item.save
-        format.html { redirect_to @item, notice: 'Item was successfully created.' }
+        format.html { redirect_to @item.purchase, notice: 'Item was successfully created.' }
         format.json { render :show, status: :created, location: @item }
-      else
-        format.html { render :new }
-        format.json { render json: @item.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /items/1
-  # PATCH/PUT /items/1.json
   def update
     respond_to do |format|
       if @item.update(item_params)
@@ -61,8 +60,6 @@ class ItemsController < ApplicationController
     end
   end
 
-  # DELETE /items/1
-  # DELETE /items/1.json
   def destroy
     @item.destroy
     respond_to do |format|
@@ -72,13 +69,11 @@ class ItemsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_item
       @item = Item.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      params.require(:item).permit(:name, :categories_id, :quantity, :unit_price, :expiration_date)
+      params.require(:item).permit(:name, :category_id, :quantity, :unit_price, :sell_price, :expiration_date, :purchase_id)
     end
 end

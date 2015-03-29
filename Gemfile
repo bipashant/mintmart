@@ -27,6 +27,7 @@ gem 'devise'
 
 gem 'breadcrumbs_on_rails'
 
+gem 'capistrano', '~> 3.3.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -44,11 +45,12 @@ group :development, :test do
   gem 'web-console', '~> 2.0'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
 
   gem 'font-awesome-rails'
 
   # for Barcode
   gem 'barby'
+  gem 'pry-rails'
+  gem 'pry'
 end
 

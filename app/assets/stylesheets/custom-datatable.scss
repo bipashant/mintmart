@@ -1,0 +1,97 @@
+table.dataTable thead th{
+  text-align: center;
+}
+table.dataTable thead .sorting {
+  background: #656d78 url(asset-path('sort_both.png')) no-repeat center right;
+  color: #FFFFFF;
+}
+table.dataTable thead .sorting_asc {
+  background: #656d78 url(asset-path('sort_asc.png')) no-repeat center right;
+  color: #FFFFFF;
+}
+
+table.dataTable thead .sorting_desc {
+  background: #656d78 url(asset-path('sort_desc.png')) no-repeat center right;
+  color: #FFFFFF;
+}
+
+table.dataTable thead .sorting_disabled {
+  background: #656d78 !important;
+  color: #FFFFFF;
+}
+
+.trans-table-admin tr td:nth-child(5){
+  text-align: right;
+}
+.trans-table-merchant tr td:nth-child(4){
+  text-align: right;
+}
+.dataTables_filter {
+  display: none;
+  margin-left: 0.5em;
+}
+
+ .dataTables_length {
+  margin-bottom: 0.5em;
+  font-family: sans-serif;
+  font-size: 14px;
+}
+/* PAGINATION*/
+
+ .dataTables_paginate {
+  float: right;
+  text-align: right;
+  padding-top: 0.25em;
+  font-size: 14px;
+  font-family: sans-serif;
+}
+
+ .dataTables_paginate .paginate_button {
+  box-sizing: border-box;
+  display: inline-block;
+  min-width: 1.5em;
+  padding: 2px;
+  margin-left: 5px;
+  text-align: center;
+  background:#ffffff ;
+  text-decoration: none !important;
+  border-radius: 3px;
+  color: #656d78;
+  border: solid #ddd thin ;
+  width: 30px;
+  height: 30px;
+  font-size: 12px;
+  line-height: 25px;
+  cursor: pointer;
+}
+ .dataTables_paginate .paginate_button:hover {
+
+  background:#eee ;
+  color: #222;
+  border: solid #9d9d9d thin ;
+
+}
+
+ .dataTables_paginate .paginate_button.current,  .dataTables_paginate .paginate_button.current:hover {
+  background: #33414e;
+  color: #FFF;
+  border-color: #33414e;
+  cursor: default;
+
+}
+
+ .dataTables_paginate .paginate_button.disabled,  .dataTables_paginate .paginate_button.disabled:hover,  .dataTables_paginate .paginate_button.disabled:active {
+
+  margin-left: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  color: #656d78;
+  border-color: #E5E5E5;
+  background-color: #EBEBEB;
+  cursor: default;
+}
+ .dataTables_paginate .paginate_button:active {
+  outline: none;
+}
+/*END OF PAGINATION*/
