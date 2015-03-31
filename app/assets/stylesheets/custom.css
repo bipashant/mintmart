@@ -80,7 +80,7 @@
 }
 label
 {
-    line-height: 3;
+    /*line-height: 3;*/
 }
 .align_right{
     text-align: right;
@@ -150,9 +150,10 @@ select option{
     z-index: 2;
     cursor: pointer;
 }
+.help-block {
+    color: red;
+    margin-bottom: 0px;
+    display: block !important;
+    height: 10px;
+}
 
-.ascii{width: 500px}
-barby-barcode { border-spacing: 0; max-width: 400px !important; width:400px; background-color: #fff;}
-tr.barby-row {}
-td.barby-cell { width: 3px; height: 100px; }
-td.barby-cell.on { background: #000; }

@@ -11,78 +11,87 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150321034133) do
+ActiveRecord::Schema.define(version: 120150319160428) do
 
   create_table "categories", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "suppliers_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.string   "name",         limit: 255
+    t.integer  "suppliers_id", limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
-  create_table "customers", force: :cascade do |t|
-    t.string   "first_name"
-    t.string   "middle_name"
-    t.string   "last_name"
-    t.string   "phone"
-    t.string   "address"
-    t.decimal  "total_purchased_amount"
+  create_table "communication_media", force: :cascade do |t|
+    t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
 
+  create_table "customers", force: :cascade do |t|
+    t.string   "first_name",             limit: 255
+    t.string   "middle_name",            limit: 255
+    t.string   "last_name",              limit: 255
+    t.string   "phone",                  limit: 255
+    t.string   "address",                limit: 255
+    t.decimal  "total_purchased_amount",             precision: 10
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
+    t.string   "communication_details",  limit: 255
+    t.boolean  "status",                 limit: 1
+    t.integer  "communication_media_id", limit: 4
+  end
+
   create_table "items", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "category_id"
-    t.integer  "quantity"
-    t.integer  "unit_price"
-    t.string   "expiration_date"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.integer  "purchase_id"
-    t.decimal  "sell_price"
+    t.string   "name",            limit: 255
+    t.integer  "category_id",     limit: 4
+    t.integer  "quantity",        limit: 4
+    t.integer  "unit_price",      limit: 4
+    t.string   "expiration_date", limit: 255
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
+    t.integer  "purchase_id",     limit: 4
+    t.decimal  "sell_price",                  precision: 10
   end
 
   create_table "purchases", force: :cascade do |t|
-    t.integer  "supplier_id"
-    t.integer  "invoice_id"
-    t.integer  "amount"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "supplier_id", limit: 4
+    t.integer  "invoice_id",  limit: 4
+    t.integer  "amount",      limit: 4
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
     t.date     "date"
   end
 
   create_table "roles", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "suppliers", force: :cascade do |t|
-    t.string   "organization_name"
-    t.string   "address"
-    t.string   "contact_person"
-    t.string   "contact_no"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.string   "organization_name", limit: 255
+    t.string   "address",           limit: 255
+    t.string   "contact_person",    limit: 255
+    t.string   "contact_no",        limit: 255
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
+    t.string   "email",                  limit: 255, default: "", null: false
+    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
+    t.string   "current_sign_in_ip",     limit: 255
+    t.string   "last_sign_in_ip",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

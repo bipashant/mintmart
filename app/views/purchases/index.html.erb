@@ -39,14 +39,13 @@
                 <tbody>
                 <% @purchases.each do |purchase| %>
                     <tr>
-                      <td class="center"><%= link_to purchase.supplier.organization_name,supplier_path(purchase.supplier) %> </td>
+                      <td class="center"><%= purchase.supplier.organization_name %> </td>
                       <td class="center"><%= purchase.date %> </td>
                       <td class="center"><%= purchase.items.count %> </td>
                       <td class="center"><%= purchase.amount %> </td>
                       <td class="center">
                         <%= link_to ' <i class="glyphicon glyphicon-zoom-in icon-white"></i> View'.html_safe, purchase_path(purchase),class:'btn btn-success' %>
                         <%= link_to ' <i class="glyphicon glyphicon-edit icon-white"></i> Update'.html_safe, edit_purchase_path(purchase),class:'btn btn-info' %>
-
                         <%= link_to '<i class="glyphicon glyphicon-trash icon-white"></i> Delete'.html_safe, purchase_path(purchase), method: :delete, data: { confirm: 'Are you sure?' },class:'btn btn-danger' %>
                       </td>
                     </tr>

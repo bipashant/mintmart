@@ -45,7 +45,7 @@
 # #   }
 
 server '127.0.0.1', user: 'bipashant', password: '123', roles: %w{web app db}, primary: :true
-set :branch, 'develop'
-set :deploy_to, '/home/first_deploy'
+set :branch, 'master'
+set :deploy_to, '/home/bipashant/first_deploy'
 set :stage, :production
 set :rails_env, :production

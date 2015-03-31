@@ -8,5 +8,36 @@ $(document).ready(function () {
         theme: 'dark',
         timepicker: false,
         format: 'Y-m-d'
-    })
+    });
+
+    $('#new_purchase').validate({
+        // Specify the validation rules
+        rules: {
+            'purchase[supplier_id]': {
+                required: true
+            },
+            'purchase[date]': {
+                required: true
+            }
+        },
+
+// Specify the validation error messages
+        messages: {
+            'purchase[supplier_id]': {
+                required: 'Supplier is required.'
+            },
+            'purchase[date]': {
+                required: 'Purchase Date is required.'
+            }
+        },
+        errorPlacement: function (error, element) {
+            error.appendTo('#' + element.attr('id') + '_error');
+        },
+        submitHandler: function (form) {
+
+           form.submit();
+        }
+    });
+
+
 });

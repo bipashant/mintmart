@@ -30,16 +30,7 @@
                               </div>
                               <div class="col-md-8">
                                 <%= f.text_field :name,class: 'form-control',placeholder:'Category Name' %>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="row margin-bottom">
-                            <div class="col-md-6">
-                              <div class="col-md-4">
-                                <%= f.label(:suppliers_id,'Suppliers Name') %>
-                              </div>
-                              <div class="col-md-8">
-                                <%= f.select(:suppliers_id, options_from_collection_for_select(@suppliers, "id", "organization_name"), {prompt: 'Choose Suppliers'}, {class: 'form-control select'}) %>
+                                <span class="help-block text-danger text-danger" id="category_name_error"></span>
                               </div>
                             </div>
                           </div>

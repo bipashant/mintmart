@@ -1,21 +1,15 @@
 class ItemsController < ApplicationController
 
-
-  require 'barby'
-  require 'barby/barcode/ean_13'
-  require 'barby/barcode/code_128'
-  require 'barby/outputter/ascii_outputter'
-  require 'barby/outputter/html_outputter'
-
   before_action :set_item, only: [:show, :edit, :update, :destroy]
 
   def index
-    @barcode = Barby::Code128B.new('Bibek')
-    @barcode_for_html = Barby::HtmlOutputter.new(@barcode)
-   # @barcode_for_html.xdim = 1
-
     add_breadcrumb "ITEM", :items_path
     @items = Item.all
+    binding.pry
+    respond_to do |format|
+      format.html
+      format.json { render json: ItemDatatable.new(view_context) }
+    end
   end
 
   def show
@@ -36,7 +30,6 @@ class ItemsController < ApplicationController
     add_breadcrumb "UPDATE", :edit_item_path
     @categories=Category.all
   end
-
 
   def create
     @item = Item.new(item_params)

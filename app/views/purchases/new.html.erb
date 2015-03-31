@@ -23,13 +23,14 @@
                     <div class="box col-md-12">
                       <div class="box-inner col-md-12">
                         <div class="box-content">
-                          <div class="row margin-bottom">
+                          <div class="row margin-bottom ">
                             <div class="col-md-10">
                               <div class="col-md-4">
                                 <%= f.label(:supplier_id,'Supplier') %>
                               </div>
                               <div class="col-md-5">
                                 <%= f.select(:supplier_id, options_from_collection_for_select(@suppliers, "id", "organization_name"), {prompt: 'Choose Supplier'}, {class: 'form-control select'}) %>
+                                <span class="help-block text-danger text-danger" id="purchase_supplier_id_error"></span>
                               </div>
                             </div>
                           </div>
@@ -40,6 +41,7 @@
                               </div>
                               <div class="col-md-5">
                                 <%= f.text_field(:date,class: 'form-control',placeholder:'Purchased on' )%>
+                                <span class="help-block text-danger text-danger" id="purchase_date_error"></span>
                                 <%= f.hidden_field(:amount,value: 0 )%>
                               </div>
                             </div>

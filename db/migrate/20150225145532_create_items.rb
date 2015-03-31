@@ -8,7 +8,6 @@ class CreateItems < ActiveRecord::Migration
       t.string :expiration_date
 
       t.timestamps null: false
-      index
     end
   end
 end

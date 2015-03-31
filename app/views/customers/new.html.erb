@@ -30,6 +30,7 @@
                           </div>
                           <div class="col-md-8">
                             <%= f.text_field :first_name,class: 'form-control',placeholder:'First Name' %>
+                            <span class="help-block text-danger text-danger" id="category_name_error"></span>
                           </div>
                         </div>
                       </div>
@@ -73,6 +74,29 @@
                           </div>
                         </div>
                       </div>
+
+                      <div class="row margin-bottom">
+                        <div class="col-md-6">
+                          <div class="col-md-4">
+                            <%= f.label(:communication_media_id,'Communication Media') %>
+                          </div>
+                          <div class="col-md-8">
+                            <%= f.text_field :communication_media_id,class: 'form-control',placeholder:'Communication Media' %>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row margin-bottom">
+                        <div class="col-md-6">
+                          <div class="col-md-4">
+                            <%= f.label(:communication_details,'Communication Details') %>
+                          </div>
+                          <div class="col-md-8">
+                            <%= f.text_field :communication_details,class: 'form-control',placeholder:'Communication Details' %>
+                          </div>
+                        </div>
+                      </div>
+
                       <div class="row margin-bottom">
                         <div class="col-md-6">
                           <div class="col-md-6">
@@ -80,10 +104,8 @@
                           <div class="col-md-4">
                             <%= f.submit'Register',class: 'btn btn-default',id: 'create-customer-btn' %>
                           </div>
-
                         </div>
                       </div>
-
                     </div>
                   </div>
                 </div>
