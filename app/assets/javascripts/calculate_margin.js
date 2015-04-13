@@ -15,6 +15,10 @@ $(document).ready(function () {
         var unit_price = parseFloat($('#item_unit_price').val());
         var margin = parseFloat($('#margin_percentage').val());
         var sale_price = unit_price + unit_price * margin/100;
+        if(sale_price.toString()=="NaN")
+        {
+            sale_price = 0;
+        }
         $('#item_sell_price').val(sale_price);
     }
 

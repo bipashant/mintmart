@@ -5,7 +5,6 @@ class ItemsController < ApplicationController
   def index
     add_breadcrumb "ITEM", :items_path
     @items = Item.all
-    binding.pry
     respond_to do |format|
       format.html
       format.json { render json: ItemDatatable.new(view_context) }
@@ -33,11 +32,28 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    respond_to do |format|
-      if @item.save
-        format.html { redirect_to @item.purchase, notice: 'Item was successfully created.' }
-        format.json { render :show, status: :created, location: @item }
+    @item.total = @item.unit_price.to_d * @item.quantity.to_d
+    @item.current_quantity = @item.quantity
+    if @item.save
+      @count = @item.purchase.items.count
+      @amount = @item.purchase.items.sum(:total)
+      respond_to do |format|
+        format.json { render json: {count: @count, total_amount: @amount}}
       end
+    end
+  end
+
+  def check_item_id
+    @item = Item.find_by_item_id(params[:item][:item_id])
+    respond_to do |format|
+      format.json { render json: !@item }
+    end
+  end
+
+  def generate_item_id_for_open_item
+    @item =  Item.last ? (Item.last.id+1).to_s.rjust(6,'0') : '000001'
+    respond_to do |format|
+      format.json { render json: {item_id: @item} }
     end
   end
 
@@ -54,6 +70,7 @@ class ItemsController < ApplicationController
   end
 
   def destroy
+    binding.pry
     @item.destroy
     respond_to do |format|
       format.html { redirect_to items_url, notice: 'Item was successfully deleted.' }
@@ -67,6 +84,6 @@ class ItemsController < ApplicationController
     end
 
     def item_params
-      params.require(:item).permit(:name, :category_id, :quantity, :unit_price, :sell_price, :expiration_date, :purchase_id)
+      params.require(:item).permit( :item_id, :name, :category_id, :quantity, :unit_price, :sell_price, :expiration_date, :purchase_id, :current_quantity)
     end
 end

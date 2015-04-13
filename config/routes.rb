@@ -1,13 +1,22 @@
 Rails.application.routes.draw do
-  resources :purchases
 
   devise_for :users
   resources :customers
-  resources :items
   resources :suppliers
   resources :categories
   root to: 'items#index'
 
+  resources :items do
+    collection do
+      get 'check_item_id'
+      get 'generate_item_id_for_open_item'
+    end
+  end
+  resources :purchases do
+    collection do
+      get 'load_item_list'
+    end
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   # You can have the root of your site routed with "root"

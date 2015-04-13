@@ -41,15 +41,18 @@ ActiveRecord::Schema.define(version: 120150319160428) do
   end
 
   create_table "items", force: :cascade do |t|
-    t.string   "name",            limit: 255
-    t.integer  "category_id",     limit: 4
-    t.integer  "quantity",        limit: 4
-    t.integer  "unit_price",      limit: 4
-    t.string   "expiration_date", limit: 255
-    t.datetime "created_at",                                 null: false
-    t.datetime "updated_at",                                 null: false
-    t.integer  "purchase_id",     limit: 4
-    t.decimal  "sell_price",                  precision: 10
+    t.string   "name",             limit: 255
+    t.integer  "category_id",      limit: 4
+    t.integer  "quantity",         limit: 4
+    t.integer  "unit_price",       limit: 4
+    t.string   "expiration_date",  limit: 255
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+    t.integer  "purchase_id",      limit: 4
+    t.decimal  "sell_price",                   precision: 10
+    t.decimal  "total",                        precision: 10
+    t.string   "item_id",          limit: 255
+    t.integer  "current_quantity", limit: 4
   end
 
   create_table "purchases", force: :cascade do |t|

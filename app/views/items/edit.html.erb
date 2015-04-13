@@ -9,7 +9,7 @@
         <div class="box col-md-12">
           <div class="box-inner">
             <div class="box-header well" data-original-title="">
-              <h2><i class="fa fa-sitemap"></i> Register new Item</h2>
+              <h2><i class="fa fa-sitemap"></i> Update items</h2>
               <div class="box-icon">
                 <a href="#" class="btn btn-setting btn-round btn-default"><i class="glyphicon glyphicon-cog"></i></a>
                 <a href="#" class="btn btn-minimize btn-round btn-default"><i
@@ -24,62 +24,94 @@
                       <div class="box-inner col-md-12">
                         <div class="box-content">
                           <div class="row margin-bottom">
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                               <div class="col-md-4">
                                 <%= f.label(:name,'Name') %>
                               </div>
                               <div class="col-md-8">
                                 <%= f.text_field :name,class: 'form-control',placeholder:' Name' %>
+                                <span class="help-block text-danger text-danger" id="item_name_error"></span>
                               </div>
                             </div>
                           </div>
                           <div class="row margin-bottom">
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                               <div class="col-md-4">
                                 <%= f.label(:category_id,'Category') %>
                               </div>
                               <div class="col-md-8">
                                 <%= f.select(:category_id, options_from_collection_for_select(@categories, "id", "name"), {prompt: 'Choose Categories'}, {class: 'form-control select'}) %>
+                                <span class="help-block text-danger text-danger" id="item_category_id_error"></span>
                               </div>
                             </div>
                           </div>
                           <div class="row margin-bottom">
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                               <div class="col-md-4">
                                 <%= f.label(:quantity,'Quantity') %>
                               </div>
                               <div class="col-md-8">
                                 <%= f.number_field :quantity,class: 'form-control',placeholder:'Quantity' %>
+                                <span class="help-block text-danger text-danger" id="item_quantity_error"></span>
                               </div>
                             </div>
                           </div>
                           <div class="row margin-bottom">
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                               <div class="col-md-4">
                                 <%= f.label(:unit_price,'Unit Price') %>
                               </div>
                               <div class="col-md-8">
-                                <%= f.text_field :unit_price,class: 'form-control',placeholder:'Unit_price' %>
+                                <%= f.text_field :unit_price,class: 'form-control',placeholder:'Unit Price' %>
+                                <span class="help-block text-danger text-danger" id="item_unit_price_error"></span>
                               </div>
                             </div>
                           </div>
                           <div class="row margin-bottom">
-                            <div class="col-md-6">
+                            <div class="col-md-8">
+                              <div class="col-md-4">
+                                <%= f.label(:margin,'Margin') %>
+                              </div>
+                              <div class="col-md-8">
+                                <%= text_field_tag :margin_percentage,'20',class: 'form-control',placeholder:'Margin' %>
+                                <span class="help-block text-danger text-danger" id="margin_percentage_error"></span>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row margin-bottom">
+                            <div class="col-md-8">
+                              <div class="col-md-4">
+                                <%= f.label(:sell_price,'Sell Price') %>
+                              </div>
+                              <div class="col-md-8">
+                                <%= f.text_field :sell_price,class: 'form-control',placeholder:'Sell Price' %>
+                                <span class="help-block text-danger text-danger" id="item_sell_price_error"></span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row margin-bottom">
+                            <div class="col-md-8">
                               <div class="col-md-4">
                                 <%= f.label(:expiration_date,'Expired on') %>
                               </div>
                               <div class="col-md-8">
                                 <%= f.text_field :expiration_date,class: 'form-control',placeholder:'Expired on' %>
+                                <span class="help-block text-danger text-danger" id="item_expiration_date_error"></span>
                               </div>
                             </div>
                           </div>
                           <div class="row margin-bottom">
-                            <div class="col-md-6">
-                              <div class="col-md-6">
+                            <div class="col-md-8">
+                              <div class="col-md-8">
                               </div>
-                              <div class="col-md-4">
+                              <div class="modal-footer">
                                 <%= f.submit'Register',class: 'btn btn-default',id: 'create-customer-btn' %>
                               </div>
+                              <div class="col-md-4">
+
+                              </div>
+
 
                             </div>
                           </div>

@@ -1,5 +1,5 @@
 class PurchasesController < ApplicationController
-  before_action :set_purchase, only: [:show, :edit, :update, :destroy]
+  before_action :set_purchase, only: [:show, :edit, :update, :destroy, :load_item_list]
 
   respond_to :html
 
@@ -11,8 +11,17 @@ class PurchasesController < ApplicationController
   def show
     @items = @purchase.items
     @item = Item.new
-    @categories=Category.all
+    @categories = Category.all
     respond_with(@purchase)
+  end
+
+  def load_item_list
+    item_datatable = ItemDatatable.new(view_context)
+    item_datatable.set_purchase_id(@purchase.id)
+    binding.pry
+    respond_to do |format|
+      format.json { render json: item_datatable }
+    end
   end
 
   def new

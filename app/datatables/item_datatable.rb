@@ -11,26 +11,29 @@ class ItemDatatable < AjaxDatatablesRails::Base
     @searchable_columns ||= %w(Item.name Category.name Item.sell_price,Item.quantity Item.expiration_date)
   end
 
+  def set_purchase_id current_purchase_id
+    binding.pry
+    @current_purchase_id = current_purchase_id
+  end
+
   private
 
   def data
+    binding.pry
     records.map do |record|
       [
           record.name,
           record.category.name,
           record.sell_price,
+          record.quantity,
           record.expiration_date,
-          render_tabs(record)
-
-        # comma separated list of the values for each cell of a table row
-        # example: record.attribute,
+          'render_tabs(record)'
       ]
     end
   end
 
   def get_raw_records
+    binding.pry
     Item.all
   end
-
-  # ==== Insert 'presenter'-like methods below if necessary
 end

@@ -39,5 +39,9 @@ $(document).ready(function () {
         }
     });
 
+    $('#btn_delete').click(function (e) {
+        e.preventDefault();
+        $('#confirm_dialogue_on_delete').modal('show');
+    });
 
 });
