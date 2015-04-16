@@ -3,13 +3,18 @@ Rails.application.routes.draw do
   devise_for :users
   resources :customers
   resources :suppliers
-  resources :categories
+  resources :sales
   root to: 'items#index'
 
   resources :items do
     collection do
       get 'check_item_id'
       get 'generate_item_id_for_open_item'
+    end
+  end
+  resources :categories do
+    collection do
+      get 'include_vat'
     end
   end
   resources :purchases do

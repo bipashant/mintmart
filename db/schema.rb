@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 120150319160428) do
     t.integer  "suppliers_id", limit: 4
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+    t.integer  "include_vat",  limit: 4
   end
 
   create_table "communication_media", force: :cascade do |t|

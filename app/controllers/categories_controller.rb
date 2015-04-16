@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: [:show, :edit, :update, :destroy]
+  before_action :set_category, only: [:show, :edit, :update, :destroy, :include_vat]
 
 
   def index
@@ -57,12 +57,17 @@ class CategoriesController < ApplicationController
     end
   end
 
+  def include_vat
+    respond_to do |format|
+      format.json { render json:  @category.include_vat }
+    end
+  end
   private
     def set_category
       @category = Category.find(params[:id])
     end
 
     def category_params
-      params.require(:category).permit(:name, :suppliers_id)
+      params.require(:category).permit(:name, :suppliers_id, :include_vat)
     end
 end

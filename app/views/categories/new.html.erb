@@ -36,6 +36,17 @@
                           </div>
                           <div class="row margin-bottom">
                             <div class="col-md-6">
+                              <div class="col-md-4">
+                                <%= f.label(:vat,'Include VAT') %>
+                              </div>
+                              <div class="col-md-2">
+                                <%= f.check_box :include_vat,class: 'form-control' %>
+                                <span class="help-block text-danger text-danger" id="category_name_error"></span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row margin-bottom">
+                            <div class="col-md-6">
                               <div class="col-md-6">
                               </div>
                               <div class="col-md-4">

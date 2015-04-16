@@ -125,8 +125,9 @@
             <%= form_for(@item) do |f| %>
                 <div class="row">
                   <div class="col-md-12">
-                    <div class="pull-left"><h4>Add Item</h4></div>
-                    <div class="pull-right"><%= f.submit'Register',class: 'btn btn-default',id: 'create-customer-btn' %></div>
+                    <div class="pull-left col-md-3"><h4>Add Item</h4></div>
+                    <div class="col-md-2" id="clear_all_field"><a href="#" class="btn btn-default" >Clear All</a></div>
+                    <div class="pull-right col-md-3"><%= f.submit'Register',class: 'btn btn-default',id: 'create-customer-btn' %></div>
                   </div>
                   <div class="box col-md-12">
                     <div class="box-inner col-md-12">
@@ -140,7 +141,8 @@
                               <%= f.text_field :item_id,class: 'form-control',placeholder:' Item ID' %>
                               <span class="help-block text-danger text-danger" id="item_item_id_error"></span>
                             </div>
-                            <div class="col-md-2" id="generate_item_id"><a href="#" class="btn btn-default" >Generate</a></div>
+                            <div class="col-md-2" id="generate_item_id"><a href="#" class="btn btn-default" >Generate</a>
+                            </div>
                           </div>
                         </div>
                         <div class="row margin-bottom">
@@ -172,7 +174,6 @@
                             </div>
                             <div class="col-md-8">
                               <%= f.text_field :quantity,class: 'form-control',placeholder:'Quantity' %>
-
                               <span class="help-block text-danger text-danger" id="item_quantity_error"></span>
                             </div>
                           </div>
@@ -195,19 +196,21 @@
                             </div>
                             <div class="col-md-8">
                               <%= text_field_tag :margin_percentage,'20',class: 'form-control',placeholder:'Margin' %>
+                              <input type="hidden" id="vat_percentage" class="form-control" value="0"></input>
                               <span class="help-block text-danger text-danger" id="margin_percentage_error"></span>
                             </div>
                           </div>
                         </div>
-
                         <div class="row margin-bottom">
                           <div class="col-md-8">
                             <div class="col-md-4">
                               <%= f.label(:sell_price,'Sell Price') %>
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                               <%= f.text_field :sell_price,class: 'form-control',placeholder:'Sell Price' %>
                               <span class="help-block text-danger text-danger" id="item_sell_price_error"></span>
+                            </div>
+                            <div class="col-md-2"><a href="#" class="btn btn-success hide" id="vat_included_div">13% VAT Included</a>
                             </div>
                           </div>
                         </div>
@@ -235,10 +238,6 @@
       </div>
     </div>
   </div>
-  <footer class="row">
-    <p class="col-md-9 col-sm-9 col-xs-12 copyright">&copy; <a href="#" target="_blank">Mint Mart</a>2015</p>
-  </footer>
-
 </div><!--/.fluid-container-->
 
 <%= render 'shared/logout_msgbox' %>

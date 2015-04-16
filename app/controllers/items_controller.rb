@@ -70,7 +70,6 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    binding.pry
     @item.destroy
     respond_to do |format|
       format.html { redirect_to items_url, notice: 'Item was successfully deleted.' }

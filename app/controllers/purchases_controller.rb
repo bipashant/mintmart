@@ -18,7 +18,6 @@ class PurchasesController < ApplicationController
   def load_item_list
     item_datatable = ItemDatatable.new(view_context)
     item_datatable.set_purchase_id(@purchase.id)
-    binding.pry
     respond_to do |format|
       format.json { render json: item_datatable }
     end

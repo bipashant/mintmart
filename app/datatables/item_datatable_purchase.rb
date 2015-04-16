@@ -1,14 +1,14 @@
-class ItemDatatable < AjaxDatatablesRails::Base
+class ItemPurchaseDatatable < AjaxDatatablesRails::Base
   include ItemsHelper
 
   def sortable_columns
     # Declare strings in this format: ModelName.column_name
-    @sortable_columns ||= %w(Item.name Category.name Item.sell_price,Item.quantity Item.expiration_date)
+    @sortable_columns ||= %w(Item.name Category.name Item.unit_price Item.sell_price Item.quantity Item.expiration_date)
   end
 
   def searchable_columns
     # Declare strings in this format: ModelName.column_name
-    @searchable_columns ||= %w(Item.name Category.name Item.sell_price,Item.quantity Item.expiration_date)
+    @searchable_columns ||= %w(Item.name Category.name Item.unit_price Item.sell_price Item.quantity Item.expiration_date)
   end
 
   def set_purchase_id current_purchase_id
