@@ -44,7 +44,7 @@ table.dataTable thead .sorting_disabled {
   padding-top: 0.25em;
   font-size: 14px;
   font-family: sans-serif;
-   background-color: green;
+   background-color: rgb(39, 43, 48);
 }
 
  .dataTables_paginate .paginate_button {
@@ -64,23 +64,20 @@ table.dataTable thead .sorting_disabled {
   font-size: 12px;
   line-height: 25px;
   cursor: pointer;
-   background-color: blue;
 }
  .dataTables_paginate .paginate_button:hover {
 
   background:#eee ;
   color: #222;
   border: solid #9d9d9d thin ;
-   background-color: red;
 
 }
 
  .dataTables_paginate .paginate_button.current,  .dataTables_paginate .paginate_button.current:hover {
-  background: #33414e;
+  background: green;
   color: #FFF;
   border-color: #33414e;
   cursor: default;
-   background-color: yellow;
 
 }
 
@@ -92,12 +89,10 @@ table.dataTable thead .sorting_disabled {
   border-radius: 3px;
   color: #656d78;
   border-color: #E5E5E5;
-  background-color: #EBEBEB;
+  background-color: #0D1C28;
   cursor: default;
-   background-color: #2f7d2f;
 }
  .dataTables_paginate .paginate_button:active {
   outline: none;
-   background-color: #960004;
 }
 /*END OF PAGINATION*/

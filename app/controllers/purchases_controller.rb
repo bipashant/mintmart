@@ -12,14 +12,13 @@ class PurchasesController < ApplicationController
     @items = @purchase.items
     @item = Item.new
     @categories = Category.all
-    respond_with(@purchase)
-  end
 
-  def load_item_list
-    item_datatable = ItemDatatable.new(view_context)
-    item_datatable.set_purchase_id(@purchase.id)
+    idt = ItemDatatable.new(view_context)
+    idt.set_purchase_id(@purchase.id)
+
     respond_to do |format|
-      format.json { render json: item_datatable }
+      format.html
+      format.json { render json: idt }
     end
   end
 

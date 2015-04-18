@@ -3,25 +3,28 @@
  */
 'use strict';
 $(document).ready(function () {
-    var item_list_on_purchase = $('#items-table-purchase').dataTable({
+    var itemDataTable = $('#items-main-table-new').dataTable({
         "pagingType": "full_numbers",
         "bLengthChange": false,
-        "iDisplayLength": 10,
-        "aaSorting": [[3, 'desc']]
-    });
-
-    var item_datatable_on_index = $('#items-main-table').dataTable({
-        "pagingType": "simple_numbers",
-        "bLengthChange": false,
-        "iDisplayLength": 10,
-        "aaSorting": [[0, 'asc']],
+        "iDisplayLength":10,
+        "aaSorting":[[2,'desc']],
         "processing": true,
         "serverSide": true,
-        "aoColumnDefs": [
-            {'bSortable': false, 'aTargets': [5]},
-            {'bSearchable': false, 'aTargets': [5]}
-        ]
+        "ajax": $('#items-main-table-new').data('source'),
     });
+
+    $('#input-search-items').on('input keyup paste', function() {
+        itemDataTable.fnFilter(this.value);
+    });
+
+    // To prevent submit on enter we need to prevent default behaviour of Enter key on keydown event
+    $('#input-search-items').keydown(function(event){
+        if(event.keyCode == 13) {
+            event.preventDefault();
+            return false;
+        }
+    });
+
 
     $('#input-search-items').on('input keyup paste', function () {
         item_datatable_on_index.fnFilter(this.value);
@@ -118,6 +121,7 @@ $(document).ready(function () {
                 $('#item_count').html(data.count);
                 $('#total_amount').html(data.total_amount);
                 $('#status_div_purchase').html('Item successfully created.').fadeIn(10).fadeOut(5000);
+                itemDataTable.fnDraw();
 
             });
             return false; // prevents normal behaviour

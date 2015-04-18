@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   end
   resources :purchases do
     collection do
-      get 'load_item_list'
+
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.

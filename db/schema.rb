@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 120150319160428) do
     t.decimal  "total",                        precision: 10
     t.string   "item_id",          limit: 255
     t.integer  "current_quantity", limit: 4
+    t.decimal  "margin",                       precision: 10
   end
 
   create_table "purchases", force: :cascade do |t|
