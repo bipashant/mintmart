@@ -35,4 +35,45 @@ $(document).ready(function () {
             form.submit();
         }
     });
+
+
+
+    var supplierMainDataTable = $('#supplier-main-table').dataTable({
+        "pagingType": "full_numbers",
+        "bLengthChange": false,
+        "iDisplayLength":10,
+        "aaSorting":[[0,'desc']],
+        "processing": true
+    });
+    $('#input-search-supplier-main').on('input keyup paste', function() {
+        supplierMainDataTable.fnFilter(this.value);
+    });
+
+    // To prevent submit on enter we need to prevent default behaviour of Enter key on keydown event
+    $('#input-search-itemsOn-Category').keydown(function(event){
+        if(event.keyCode == 13) {
+            event.preventDefault();
+            return false;
+        }
+    });
+
+    var purchaseOnSupplierDataTable = $('#purchase-table-supplier').dataTable({
+        "pagingType": "full_numbers",
+        "bLengthChange": false,
+        "iDisplayLength":10,
+        "aaSorting":[[0,'desc']],
+        "processing": true
+    });
+    $('#input-search-purchase-on-supplier').on('input keyup paste', function() {
+        purchaseOnSupplierDataTable.fnFilter(this.value);
+    });
+
+    // To prevent submit on enter we need to prevent default behaviour of Enter key on keydown event
+    $('#input-search-purchase-on-supplier').keydown(function(event){
+        if(event.keyCode == 13) {
+            event.preventDefault();
+            return false;
+        }
+    });
 });
+

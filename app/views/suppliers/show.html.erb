@@ -23,6 +23,7 @@
                 <tr>
                   <th>Organization name</th>
                   <th>Address</th>
+                  <th>No. of Purchase</th>
                   <th>Contact person</th>
                   <th>Contact no</th>
                   <th>Actions</th>
@@ -32,14 +33,64 @@
                     <tr>
                       <td><%=@supplier.organization_name%></td>
                       <td class="center"><%=@supplier.address %> </td>
+                      <td><%=@supplier.purchases.count%></td>
                       <td class="center"><%=@supplier.contact_person %> </td>
                       <td class="center"><%=@supplier.contact_no %> </td>
                       <td class="center">
                         <%= link_to ' <i class="glyphicon glyphicon-edit icon-white"></i> Update'.html_safe, edit_supplier_path(@supplier),class:'btn btn-info' %>
-
-                        <%= link_to '<i class="glyphicon glyphicon-trash icon-white"></i> Delete'.html_safe, supplier_path(@supplier), method: :delete, data: { confirm: 'Are you sure?' },class:'btn btn-danger' %>
                       </td>
                     </tr>
+
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="box col-md-12">
+          <div class="box-inner">
+            <div class="box-header well" data-original-title="">
+              <h2><i class="fa fa-sitemap"></i> Purchase List</h2>
+              <div class="box-icon">
+                <a href="#" class="btn btn-setting btn-round btn-default"><i class="glyphicon glyphicon-cog"></i></a>
+                <a href="#" class="btn btn-minimize btn-round btn-default"><i
+                class="glyphicon glyphicon-chevron-up"></i></a>
+                <a href="#" class="btn btn-close btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a>
+              </div>
+            </div>
+            <div class="box-content">
+
+              <div class="col-xs-12 col-md-3 pull-right">
+                <div class="xn-search pull-right margin-bottom">
+                  <form role="form">
+                    <input type="text" name="search" placeholder="Search" id="input-search-purchase-on-supplier">
+                  </form>
+                </div>
+              </div>
+              <table class="table table-striped table-bordered bootstrap-datatable datatable responsive" id="purchase-table-supplier">
+                <thead>
+                <tr>
+
+                  <th>Invoice ID</th>
+                  <th>Purchased Date</th>
+                  <th>No. of Items</th>
+                  <th>Amount</th>
+                  <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% @supplier.purchases.each do |purchase| %>
+                    <tr>
+                      <td class="center"><%= purchase.invoice_id %> </td>
+                      <td class="center"><%= purchase.date %> </td>
+                      <td class="center"><%= purchase.items.sum(:quantity) %> </td>
+                      <td class="center">NRS <%= purchase.items.sum(:total) %> </td>
+                      <td class="center">
+                        <%= link_to ' <i class="glyphicon glyphicon-zoom-in icon-white"></i> View'.html_safe, purchase_path(purchase),class:'btn btn-success' %>
+                      </td>
+                    </tr>
+                <% end %>
 
                 </tbody>
               </table>

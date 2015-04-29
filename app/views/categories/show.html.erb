@@ -23,6 +23,7 @@
                 <tr>
                   <th>Name</th>
                   <th>Total no. of Items </th>
+                  <th>VAT</th>
                   <th>Registered Date</th>
                   <th>Actions</th>
                 </tr>
@@ -31,12 +32,17 @@
                 <tr>
                   <td><%=@category.name %></td>
                   <td class="align_right"><%=@category.items.count %></td>
+                  <% if @category.include_vat == 1%>
+                      <td class="align_right"><div class="col-md-2"><a href="#" class="btn btn-success" id="vat_included_div">13% VAT Included</a>
+                      </div></td>
+                  <% elsif%>
+                      <td class="align_right"><div class="col-md-2"><a href="#" class="btn btn-danger" id="vat_excluded_div">VAT not Included</a>
+                      </div></td>
+                  <%end %>
                   <td class="center"><%=@category.created_at.strftime('%m/%d/%Y') %> </td>
                   <td class="center">
                     <%= link_to ' <i class="glyphicon glyphicon-edit icon-white"></i> Update'.html_safe, edit_category_path(@category),class:'btn btn-info' %>
 
-                    <%= link_to ' <i class="glyphicon glyphicon-trash icon-white"></i>
-                      Delete'.html_safe, @category, method: :delete, data: { confirm: 'Are you sure?' },class:'btn btn-danger' %>
                   </td>
                 </tr>
                 </tbody>
@@ -63,7 +69,7 @@
               <div class="col-xs-12 col-md-3 pull-right">
                 <div class="xn-search pull-right margin-bottom">
                   <form role="form">
-                    <input type="text" name="search" placeholder="Search" id="input-search-merchant">
+                    <input type="text" name="search" placeholder="Search" id="input-search-itemsOn-Category">
                   </form>
                 </div>
               </div>

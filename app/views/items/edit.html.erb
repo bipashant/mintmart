@@ -37,10 +37,10 @@
                           <div class="row margin-bottom">
                             <div class="col-md-8">
                               <div class="col-md-4">
-                                <%= f.label(:category_id,'Category') %>
+                                <%= f.label(:category,'Category') %>
                               </div>
                               <div class="col-md-8">
-                                <%= f.select(:category_id, options_from_collection_for_select(@categories, "id", "name"), {prompt: 'Choose Categories'}, {class: 'form-control select'}) %>
+                                <%= f.select(:category, options_from_collection_for_select(@categories, 'id', 'name',@item.category.id), {prompt: 'Choose Categories'}, {class: 'form-control select'}) %>
                                 <span class="help-block text-danger text-danger" id="item_category_id_error"></span>
                               </div>
                             </div>
@@ -73,8 +73,8 @@
                                 <%= f.label(:margin,'Margin') %>
                               </div>
                               <div class="col-md-8">
-                                <%= text_field_tag :margin_percentage,'20',class: 'form-control',placeholder:'Margin' %>
-                                <span class="help-block text-danger text-danger" id="margin_percentage_error"></span>
+                                <%= f.text_field :margin,class: 'form-control',placeholder:'Margin' %>
+                                <span class="help-block text-danger text-danger" id="item_margin_error"></span>
                               </div>
                             </div>
                           </div>

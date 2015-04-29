@@ -1,0 +1,118 @@
+<div class="modal fade" id="checkout_div" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="box-content">
+          <%= form_for(@sale) do |f| %>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="pull-left col-md-3"><h4>Checkout</h4></div>
+                </div>
+                <div class="box col-md-12">
+                  <div class="box-inner col-md-12">
+                    <div class="box-content">
+                      <div class="row margin-bottom">
+                        <div class="col-md-9">
+                          <div class="col-md-6">
+                            <%= f.label(:customer_id,'Customer ID') %>
+                          </div>
+                          <div class="col-md-6">
+                            <%= f.text_field :customer_id,class: 'form-control',placeholder:' Customer ID' %>
+                            <span class="help-block text-danger text-danger" id="sale_customer_id_error"></span>
+                          </div>
+
+                        </div>
+                      </div>
+                      <div class="row margin-bottom">
+                        <div class="col-md-9">
+                          <div class="col-md-6">
+                            <%= f.label(:payment_method,'Payment Method') %>
+                          </div>
+                          <div class="col-md-6">
+                            <%= f.select :payment_method, options_for_select([ 'Cash Payment', 'Pay via Card' ], 'Cash Payment'),{},{class: 'form-control'} %>
+                            <span class="help-block text-danger text-danger" id="item_name_error"></span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row margin-bottom">
+                        <div class="col-md-9">
+                          <div class="col-md-6">
+                            <%= label_tag(:checkout_total_amount,'Total Amount') %>
+                          </div>
+                          <div class="col-md-6">
+                            <%= text_field_tag :checkout_total_amount,nil,class: 'form-control',placeholder:'Total Amount' %>
+                            <span class="help-block text-danger text-danger" id="item_quantity_error"></span>
+                          </div>
+                        </div>
+                      </div>
+
+
+                      <div class="row margin-bottom">
+                        <div class="col-md-9">
+                          <div class="col-md-6">
+                            <%= f.label(:discount,'Discount') %>
+                          </div>
+                          <div class="col-md-6">
+                            <%= f.text_field :discount,value:'0',class: 'form-control',placeholder:'Discount' %>
+                            <span class="help-block text-danger text-danger" id="sale_discount_error"></span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row margin-bottom">
+                        <div class="col-md-9">
+                          <div class="col-md-6">
+                            <%= f.label(:amount,'Final Amount') %>
+                          </div>
+                          <div class="col-md-6">
+                            <%= f.text_field :amount,class: 'form-control',placeholder:'Final Amount' %>
+                            <span class="help-block text-danger text-danger" id="item_quantity_error"></span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row margin-bottom">
+                        <div class="col-md-9">
+                          <div class="col-md-6">
+                            <%= label_tag(:checkout_received_amount,'Received Amount') %>
+                          </div>
+                          <div class="col-md-6">
+                            <%= text_field_tag :checkout_received_amount,nil,class: 'form-control',placeholder:'Received Amount' %>
+                            <span class="help-block text-danger text-danger" id="item_quantity_error"></span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row margin-bottom">
+                        <div class="col-md-9">
+                          <div class="col-md-6">
+                            <%= label_tag(:checkout_returnable_amount,'Returnable Amount') %>
+                          </div>
+                          <div class="col-md-6">
+                            <%= text_field_tag :checkout_returnable_amount,nil, class: 'form-control',placeholder:'Returnable Amount' %>
+                            <input name="sale[items_ids_on_cart]" type="hidden" value="" id="items_id_on_cart"/>
+                            <input name="sale[items_quantity_on_cart]" type="hidden" value="" id="items_quantity_on_cart"/>
+
+                            <span class="help-block text-danger text-danger" id="item_quantity_error"></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="pull-right col-md-3"><%= f.submit 'Checkout',class: 'btn btn-success',id: 'create-sales-btn' %></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+ <% end %>

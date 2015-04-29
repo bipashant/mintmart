@@ -19,7 +19,9 @@ $(document).ready(function () {
         var unit_price = parseFloat($('#item_unit_price').val());
         var margin = parseFloat($('#item_margin').val());
         var vat = parseFloat($('#vat_percentage').val());
-        var sale_price = unit_price +unit_price*vat/100+ unit_price * margin/100;
+        var sale_price_with_out_vat = unit_price + unit_price * margin/100;
+        sale_price = sale_price_with_out_vat+sale_price_with_out_vat * vat/100;
+
         if(sale_price.toString()=="NaN")
         {
             sale_price = 0;

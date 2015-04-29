@@ -39,8 +39,6 @@
                       <td class="center">
                         <%= link_to ' <i class="glyphicon glyphicon-zoom-in icon-white"></i> View'.html_safe, customer_path(customer),class:'btn btn-success' %>
                         <%= link_to ' <i class="glyphicon glyphicon-edit icon-white"></i> Update'.html_safe, edit_customer_path(customer),class:'btn btn-info' %>
-
-                        <%= link_to '<i class="glyphicon glyphicon-trash icon-white"></i> Delete'.html_safe, customer_path(customer), method: :delete, data: { confirm: 'Are you sure?' },class:'btn btn-danger' %>
                       </td>
                     </tr>
                 <% end %>

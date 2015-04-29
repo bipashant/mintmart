@@ -38,7 +38,6 @@ $(document).ready(function () {
         $('#myModal').modal('show');
     });
 
-
     //////chosen - improves select
     ////$('[data-rel="chosen"],[rel="chosen"]').chosen();
     //

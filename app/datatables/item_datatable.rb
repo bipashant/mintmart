@@ -6,12 +6,12 @@ class ItemDatatable < AjaxDatatablesRails::Base
 
   def sortable_columns
     # Declare strings in this format: ModelName.column_name
-    @sortable_columns ||= %w(Item.name Category.name Item.unit_price Item.sell_price Item.quantity Item.expiration_date)
+    @sortable_columns ||= %w(Item.name Category.name Item.item_id Item.sell_price Item.quantity Item.expiration_date)
   end
 
   def searchable_columns
     # Declare strings in this format: ModelName.column_name
-    @searchable_columns ||= %w(Item.name Category.name Item.unit_price Item.sell_price Item.quantity Item.expiration_date)
+    @searchable_columns ||= %w(Item.name Category.name Item.item_id Item.sell_price Item.quantity Item.expiration_date)
   end
 
   def set_purchase_id current_purchase_id
@@ -25,7 +25,7 @@ class ItemDatatable < AjaxDatatablesRails::Base
       [
           record.name,
           record.category.name,
-          record.unit_price,
+          record.item_id,
           record.sell_price,
           record.quantity,
           record.expiration_date,

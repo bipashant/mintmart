@@ -22,6 +22,7 @@
                 <thead>
                 <tr>
                   <th>Supplier</th>
+                  <th>Invoice No.</th>
                   <th>Purchased Date</th>
                   <th>No. of Items</th>
                   <th>Amount</th>
@@ -31,6 +32,7 @@
                 <tbody>
                     <tr>
                       <td class="center"><%= @purchase.supplier.organization_name %> </td>
+                      <td class="center"><%= @purchase.invoice_id %> </td>
                       <td class="center"><%= @purchase.date %> </td>
                       <td class="center" id="item_count"><%= @purchase.items.count %> </td>
                       <td class="center" id="total_amount">NRS <%= @purchase.items.sum(:total) %> </td>
@@ -39,8 +41,6 @@
                         <span class="btn btn-success" id ='purchase_add_item_button'><i class="glyphicon glyphicon-zoom-in icon-white"></i> Add Items</span>
 
                         <%= link_to ' <i class="glyphicon glyphicon-edit icon-white"></i> Update'.html_safe, edit_purchase_path(@purchase),class:'btn btn-info' %>
-
-                        <%= link_to '<i class="glyphicon glyphicon-trash icon-white"></i> Delete'.html_safe, purchase_path(@purchase), method: :delete, data: { confirm: 'Are you sure?' },class:'btn btn-danger',id:'btn_delete' %>
 
                       </td>
                     </tr>
@@ -183,7 +183,7 @@
                             <div class="col-md-8">
                               <%= f.text_field :margin,class: 'form-control',placeholder:'Margin' %>
                               <input type="hidden" id="vat_percentage" class="form-control" value="0"></input>
-                              <span class="help-block text-danger text-danger" id="margin_percentage_error"></span>
+                              <span class="help-block text-danger text-danger" id="item_margin_error"></span>
                             </div>
                           </div>
                         </div>

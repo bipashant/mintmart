@@ -23,7 +23,9 @@
                 <tr>
                   <th>Name</th>
                   <th>Category</th>
+                  <th>Item ID</th>
                   <th>Unit Price</th>
+                  <th>Sell Price</th>
                   <th>Quantity</th>
                   <th>Expiration_date</th>
                   <th>Actions</th>
@@ -33,7 +35,10 @@
                     <tr>
                       <td><%=@item.name%></td>
                       <td class="center"><%=@item.category.name %> </td>
+                      <td class="align_right"><%=@item.item_id %> </td>
+
                       <td class="align_right">NRS <%= number_with_precision(@item.unit_price, precision: 2) %> </td>
+                      <td class="align_right">NRS <%= number_with_precision(@item.sell_price, precision: 2) %> </td>
                       <td class="center"><%=@item.quantity %> </td>
                       <td class="center"><%=@item.expiration_date %> </td>
                       <td class="center">

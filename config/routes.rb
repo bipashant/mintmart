@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   devise_for :users
   resources :customers
   resources :suppliers
-  resources :sales
+  resources :sales do
+    get 'find_item', on: :collection
+  end
   root to: 'items#index'
 
   resources :items do

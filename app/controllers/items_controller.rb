@@ -1,6 +1,10 @@
 class ItemsController < ApplicationController
 
   before_action :set_item, only: [:show, :edit, :update, :destroy]
+  require 'escper'
+  require 'serialport'
+
+
 
   def index
     add_breadcrumb "ITEM", :items_path
@@ -12,6 +16,30 @@ class ItemsController < ApplicationController
   end
 
   def show
+    # canvas = Magick::Image.new(512, 128)
+    # gc = Magick::Draw.new
+    # gc.stroke('black')
+    # gc.stroke_width(5)
+    # gc.fill('white')
+    # gc.fill_opacity(0)
+    # gc.stroke_antialias(false)
+    # gc.stroke_linejoin('round')
+    # gc.translate(-10,-39)
+    # gc.scale(1.11,0.68)
+    # gc.path("M 14,57 L 14,56 L 15,58 L 13,58 L 14,57 L 21,59 28,60 34,62 40,65 46,67 52,68 56,70 61,72 66,73 70,74 75,74")
+    # gc.draw(canvas)
+    # escpos_code = Escper::Img.new(canvas,:obj).to_s
+    vp1 = Escper::VendorPrinter.new :id => 1, :name => 'Printer 1 USB', :path => '/dev/usb/lp1', :copies => 1
+    print_engine = Escper::Printer.new 'local', [vp1]
+    print_engine.open
+
+    print_engine.print 1, '_______________________'
+    print_engine.print 1, 'Ha ha ha ha ha ha ha ha'
+    print_engine.print 1, 'Ha ha ha ha ha ha ha ha'
+    print_engine.print 1, 'Ha ha ha ha ha ha ha ha'
+    print_engine.print 1, 'Ha ha ha ha ha ha ha ha'
+    print_engine.close
+
     add_breadcrumb "ITEM", :items_path
     add_breadcrumb "SHOW", :item_path
   end

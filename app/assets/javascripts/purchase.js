@@ -44,4 +44,23 @@ $(document).ready(function () {
         $('#confirm_dialogue_on_delete').modal('show');
     });
 
+
+    var purchaseDataTable = $('#purchase-table').dataTable({
+        "pagingType": "full_numbers",
+        "bLengthChange": false,
+        "iDisplayLength":10,
+        "aaSorting":[[0,'desc']],
+        "processing": true
+    });
+    $('#input-search-purchase').on('input keyup paste', function() {
+        purchaseDataTable.fnFilter(this.value);
+    });
+
+    // To prevent submit on enter we need to prevent default behaviour of Enter key on keydown event
+    $('#input-search-purchase').keydown(function(event){
+        if(event.keyCode == 13) {
+            event.preventDefault();
+            return false;
+        }
+    });
 });

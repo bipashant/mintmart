@@ -7,7 +7,7 @@ $(document).ready(function () {
         "pagingType": "full_numbers",
         "bLengthChange": false,
         "iDisplayLength":10,
-        "aaSorting":[[2,'desc']],
+        "aaSorting":[[0,'desc']],
         "processing": true,
         "serverSide": true,
         "ajax": $('#items-main-table-new').data('source'),
@@ -26,9 +26,6 @@ $(document).ready(function () {
     });
 
 
-    $('#input-search-items').on('input keyup paste', function () {
-        item_datatable_on_index.fnFilter(this.value);
-    });
     $('#generate_item_id').on('click', function () {
         $.ajax({
             dataType: 'json',
@@ -71,7 +68,7 @@ $(document).ready(function () {
                 required: true,
                 date: true
             },
-            "margin_percentage": {
+            "item_margin": {
                 required: true,
                 number: true
             }
@@ -100,7 +97,7 @@ $(document).ready(function () {
                 required: 'Sell Price is required',
                 number: 'Invalid Sell Price'
             },
-            "margin_percentage": {
+            "item_margin": {
                 required: 'Margin  is required.',
                 number: 'Invalid Margin Percentage'
             }

@@ -22,7 +22,7 @@
               <div class="col-xs-12 col-md-3 pull-right">
                 <div class="xn-search pull-right margin-bottom">
                   <form role="form">
-                    <input type="text" name="search" placeholder="Search" id="input-search-merchant">
+                    <input type="text" name="search" placeholder="Search" id="input-search-purchase">
                   </form>
                 </div>
               </div>
@@ -46,7 +46,6 @@
                       <td class="center">
                         <%= link_to ' <i class="glyphicon glyphicon-zoom-in icon-white"></i> View'.html_safe, purchase_path(purchase),class:'btn btn-success' %>
                         <%= link_to ' <i class="glyphicon glyphicon-edit icon-white"></i> Update'.html_safe, edit_purchase_path(purchase),class:'btn btn-info' %>
-                        <%= link_to '<i class="glyphicon glyphicon-trash icon-white"></i> Delete'.html_safe, purchase_path(purchase), method: :delete, data: { confirm: 'Are you sure?' },class:'btn btn-danger' %>
                       </td>
                     </tr>
                 <% end %>

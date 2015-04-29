@@ -7,3 +7,21 @@
   margin-top: 35px !important;
   font-size: xx-large;
 }
+
+.sale-btn{
+  margin-bottom: 10px;
+  min-width: 150px;
+}
+
+.items-main-table-new tfoot th{
+  text-align: right;
+}
+
+.items-main-table-new td{
+  white-space: nowrap;
+}
+
+.dataTables_filter{
+  display: none;
+}
+

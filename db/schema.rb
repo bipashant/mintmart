@@ -59,10 +59,10 @@ ActiveRecord::Schema.define(version: 120150319160428) do
 
   create_table "purchases", force: :cascade do |t|
     t.integer  "supplier_id", limit: 4
-    t.integer  "invoice_id",  limit: 4
+    t.string   "invoice_id",  limit: 255
     t.integer  "amount",      limit: 4
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.date     "date"
   end
 
@@ -70,6 +70,34 @@ ActiveRecord::Schema.define(version: 120150319160428) do
     t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+  end
+
+  create_table "sales", force: :cascade do |t|
+    t.integer  "customer_id",    limit: 4
+    t.decimal  "discount",                   precision: 10, scale: 2
+    t.decimal  "amount",                     precision: 10, scale: 2
+    t.datetime "created_at",                                          null: false
+    t.datetime "updated_at",                                          null: false
+    t.string   "payment_method", limit: 255
+  end
+
+  create_table "sells", force: :cascade do |t|
+    t.integer  "customer_id",    limit: 4
+    t.decimal  "amount",                     precision: 10, scale: 2
+    t.decimal  "discount",                   precision: 10, scale: 2
+    t.datetime "created_at",                                          null: false
+    t.datetime "updated_at",                                          null: false
+    t.string   "payment_method", limit: 255
+  end
+
+  create_table "sold_items", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.decimal  "rate",                   precision: 10, scale: 2
+    t.decimal  "total",                  precision: 10, scale: 2
+    t.integer  "quantity",   limit: 4
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
+    t.integer  "sell_id",    limit: 4
   end
 
   create_table "suppliers", force: :cascade do |t|
