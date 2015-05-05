@@ -152,22 +152,23 @@ $(document).ready(function () {
             error.appendTo('#' + element.attr('id') + '_error');
         },
         submitHandler: function (form) {
-            var form_data = $(form).serialize();
-            var value_to_submit = {form_value: form_data, sold_item: itemsPurchased}
-            $.ajax({
-                type: "POST",
-                url: $(form).attr('action'), //sumbits it to the given url of the form
-                data: form_data,
-                dataType: "JSON" // you want a difference between normal and ajax-calls, and json is standard
-            }).success(function (data) {
-                $('#myModal').modal('hide');
-                $('#item_count').html(data.count);
-                $('#total_amount').html(data.total_amount);
-                $('#status_div_purchase').html('Item successfully created.').fadeIn(10).fadeOut(5000);
-                itemDataTable.fnDraw();
-
-            });
-            return false; // prevents normal behaviour
+            form.submit()
+            //var form_data = $(form).serialize();
+            //var value_to_submit = {form_value: form_data, sold_item: itemsPurchased}
+            //$.ajax({
+            //    type: "POST",
+            //    url: $(form).attr('action'), //sumbits it to the given url of the form
+            //    data: form_data,
+            //    dataType: "JSON" // you want a difference between normal and ajax-calls, and json is standard
+            //}).success(function (data) {
+            //    $('#myModal').modal('hide');
+            //    $('#item_count').html(data.count);
+            //    $('#total_amount').html(data.total_amount);
+            //    $('#status_div_purchase').html('Item successfully created.').fadeIn(10).fadeOut(5000);
+            //    itemDataTable.fnDraw();
+            //
+            //});
+            //return false; // prevents normal behaviour
         }
     });
 

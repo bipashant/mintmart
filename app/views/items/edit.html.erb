@@ -26,6 +26,19 @@
                           <div class="row margin-bottom">
                             <div class="col-md-8">
                               <div class="col-md-4">
+                                <%= f.label(:item_id,'Item ID') %>
+                              </div>
+                              <div class="col-md-6">
+                                <%= f.text_field :item_id,class: 'form-control',placeholder:' Item ID' %>
+                                <span class="help-block text-danger text-danger" id="item_item_id_error"></span>
+                              </div>
+                              <div class="col-md-2" id="generate_item_id"><a href="#" class="btn btn-default" >Generate</a>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row margin-bottom">
+                            <div class="col-md-8">
+                              <div class="col-md-4">
                                 <%= f.label(:name,'Name') %>
                               </div>
                               <div class="col-md-8">
@@ -37,10 +50,10 @@
                           <div class="row margin-bottom">
                             <div class="col-md-8">
                               <div class="col-md-4">
-                                <%= f.label(:category,'Category') %>
+                                <%= f.label(:category_id,'Category') %>
                               </div>
                               <div class="col-md-8">
-                                <%= f.select(:category, options_from_collection_for_select(@categories, 'id', 'name',@item.category.id), {prompt: 'Choose Categories'}, {class: 'form-control select'}) %>
+                                <%= f.select(:category_id, options_from_collection_for_select(@categories, 'id', 'name',@item.category.id), {prompt: 'Choose Categories'}, {class: 'form-control select'}) %>
                                 <span class="help-block text-danger text-danger" id="item_category_id_error"></span>
                               </div>
                             </div>
@@ -51,7 +64,7 @@
                                 <%= f.label(:quantity,'Quantity') %>
                               </div>
                               <div class="col-md-8">
-                                <%= f.number_field :quantity,class: 'form-control',placeholder:'Quantity' %>
+                                <%= f.text_field :quantity,class: 'form-control',placeholder:'Quantity' %>
                                 <span class="help-block text-danger text-danger" id="item_quantity_error"></span>
                               </div>
                             </div>
@@ -74,19 +87,21 @@
                               </div>
                               <div class="col-md-8">
                                 <%= f.text_field :margin,class: 'form-control',placeholder:'Margin' %>
+                                <input type="hidden" id="vat_percentage" class="form-control" value="0"></input>
                                 <span class="help-block text-danger text-danger" id="item_margin_error"></span>
                               </div>
                             </div>
                           </div>
-
                           <div class="row margin-bottom">
                             <div class="col-md-8">
                               <div class="col-md-4">
                                 <%= f.label(:sell_price,'Sell Price') %>
                               </div>
-                              <div class="col-md-8">
+                              <div class="col-md-6">
                                 <%= f.text_field :sell_price,class: 'form-control',placeholder:'Sell Price' %>
                                 <span class="help-block text-danger text-danger" id="item_sell_price_error"></span>
+                              </div>
+                              <div class="col-md-2"><a href="#" class="btn btn-success hide" id="vat_included_div">13% VAT Included</a>
                               </div>
                             </div>
                           </div>
@@ -101,21 +116,6 @@
                               </div>
                             </div>
                           </div>
-                          <div class="row margin-bottom">
-                            <div class="col-md-8">
-                              <div class="col-md-8">
-                              </div>
-                              <div class="modal-footer">
-                                <%= f.submit'Register',class: 'btn btn-default',id: 'create-customer-btn' %>
-                              </div>
-                              <div class="col-md-4">
-
-                              </div>
-
-
-                            </div>
-                          </div>
-
                         </div>
                       </div>
                     </div>

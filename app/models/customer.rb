@@ -1,7 +1,6 @@
 class Customer < ActiveRecord::Base
   before_create :assign_purchased_amount
-
-
+  has_many :sales
 
   def full_name
     [first_name,middle_name,last_name].join(' ')
@@ -11,4 +10,5 @@ class Customer < ActiveRecord::Base
   def assign_purchased_amount
     self.total_purchased_amount = 0
   end
+
 end
