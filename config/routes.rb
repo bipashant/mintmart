@@ -3,8 +3,13 @@ Rails.application.routes.draw do
   devise_for :users
   resources :customers
   resources :suppliers
+
   resources :sales do
-    get 'find_item', on: :collection
+    collection do
+      get 'check_item_availabilty'
+      get 'find_item'
+    end
+
   end
   root to: 'items#index'
 
@@ -14,6 +19,7 @@ Rails.application.routes.draw do
       get 'generate_item_id_for_open_item'
     end
   end
+
   resources :categories do
     collection do
       get 'include_vat'

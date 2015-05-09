@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 120150319160428) do
     t.datetime "updated_at",                                          null: false
     t.string   "payment_method", limit: 255
     t.string   "invoice_id",     limit: 255
+    t.integer  "item_id",        limit: 4
   end
 
   create_table "sells", force: :cascade do |t|
@@ -100,6 +101,7 @@ ActiveRecord::Schema.define(version: 120150319160428) do
     t.datetime "updated_at",                                      null: false
     t.integer  "sell_id",    limit: 4
     t.integer  "sale_id",    limit: 4
+    t.integer  "item_id",    limit: 4
   end
 
   create_table "suppliers", force: :cascade do |t|
