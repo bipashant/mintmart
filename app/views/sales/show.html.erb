@@ -31,11 +31,8 @@
                     <tr>
                       <td class="center"><%= @sale.invoice_id %> </td>
                       <td class="center"><%= @sale.customer.full_name %> </td>
-                      <td class="center"><%= @sale.payment_method %> </td>
                       <td class="center"><%= @sale.amount %> </td>
-                      <td class="center">
-                        <%= link_to ' <i class="glyphicon glyphicon-zoom-in icon-white"></i> View'.html_safe, sale_path(@sale),class:'btn btn-success' %>
-                      </td>
+                      <td class="center"><%= @sale.payment_method %> </td>
                     </tr>
                 </tbody>
               </table>

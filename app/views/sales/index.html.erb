@@ -1,15 +1,16 @@
-<%= render 'shared/header'%>
+<%= render 'shared/header' %>
 <div class="ch-container">
   <div class="row">
-    <%= render 'shared/navigation_menu'%>
+    <%= render 'shared/navigation_menu' %>
     <div id="content" class="col-lg-10 col-sm-10">
       <!-- content starts -->
-      <%= render 'shared/breadcumb'%>
+      <%= render 'shared/breadcumb' %>
       <div class="row">
         <div class="box col-md-12">
           <div class="box-inner">
             <div class="box-header well" data-original-title="">
               <h2><i class="fa fa-sitemap"></i> Transaction List</h2>
+
               <div class="box-icon">
                 <a href="#" class="btn btn-setting btn-round btn-default"><i class="glyphicon glyphicon-cog"></i></a>
                 <a href="#" class="btn btn-minimize btn-round btn-default"><i
@@ -18,38 +19,48 @@
               </div>
             </div>
             <div class="box-content">
-
-              <div class="col-xs-12 col-md-3 pull-right">
-                <div class="xn-search pull-right margin-bottom">
+              <div class="col-md-12">
+                <div class="xn-search pull-right margin-bottom col-xs-12 col-md-3 pull-right">
                   <form role="form">
-                    <input type="text" name="search" placeholder="Search" id="input-search-purchase">
+                    <input type="text" placeholder="Search" id="input-search-sales-main">
                   </form>
                 </div>
+                <%= form_tag sales_path, id: 'sales_reports_form',url: 'sales/index',remote: true do %>
+                    <div class="pull-left margin-bottom col-xs-12 col-md-3">
+                      <%= text_field_tag 'start_date', '', placeholder: 'Start Date', class: 'form-control', id: 'sales_report_start_date' %>
+                    </div>
+
+                    <div class="pull-left margin-bottom col-xs-12 col-md-3">
+                      <%= text_field_tag 'end_date', '', placeholder: 'End Date', class: 'form-control', id: 'sales_report_end_date' %>
+                    </div>
+
+                    <%= button_tag class: 'btn btn-primary' do %>
+                        <span class="fa fa-files-o fa-right"></span>
+                        Generate Report
+                    <% end %>
+
+                <% end %>
+
               </div>
-              <table class="table table-striped table-bordered bootstrap-datatable datatable responsive" id="purchase-table">
+              <table class="table table-striped table-bordered bootstrap-datatable datatable responsive" id="sales-index-main-table" data-source="<%= sales_path(format: :json) %>">
                 <thead>
                 <tr>
                   <th>Receipt no.</th>
                   <th>Customer Name</th>
                   <th>Amount</th>
                   <th>Payment Method</th>
+                  <th>Date</th>
                   <th>Actions</th>
                 </tr>
                 </thead>
                 <tbody>
-                <% @sales.each do |sale| %>
-                    <tr>
-                      <td class="center"><%= sale.invoice_id %> </td>
-                      <td class="center"><%= sale.customer.full_name %> </td>
-                      <td class="center"><%= sale.payment_method %> </td>
-                      <td class="center"><%= sale.amount %> </td>
-                      <td class="center">
-                        <%= link_to ' <i class="glyphicon glyphicon-zoom-in icon-white"></i> View'.html_safe, sale_path(sale),class:'btn btn-success' %>
-                      </td>
-                    </tr>
-                <% end %>
 
                 </tbody>
+                <tfoot>
+                <th></th>
+                <th class="pull-right">Total</th>
+                <th id ='sales-table-footer-total'><%= @total_amount %></th>
+                </tfoot>
               </table>
 
             </div>

@@ -33,19 +33,28 @@
                   <th>Purchased Date</th>
                   <th>No. of Items</th>
                   <th>Amount</th>
+                  <th>Status</th>
                   <th>Actions</th>
                 </tr>
                 </thead>
                 <tbody>
                 <% @purchases.each do |purchase| %>
+                <% status = ''%>
+
+                <% if purchase.status %>
+                        <% status = 'Closed'%>
+                 <% else %>
+                        <% status = 'Open'%>
+                  <% end %>
                     <tr>
                       <td class="center"><%= purchase.supplier.organization_name %> </td>
                       <td class="center"><%= purchase.date %> </td>
-                      <td class="center"><%= purchase.items.count %> </td>
-                      <td class="center"><%= purchase.items.sum(:total) %> </td>
+                      <td class="center"><%= purchase.purchased_items.count %> </td>
+                      <td class="center"><%= purchase.purchased_items.sum(:total) %> </td>
+                      <td class="center"><%= status %> </td>
                       <td class="center">
                         <%= link_to ' <i class="glyphicon glyphicon-zoom-in icon-white"></i> View'.html_safe, purchase_path(purchase),class:'btn btn-success' %>
-                        <%= link_to ' <i class="glyphicon glyphicon-edit icon-white"></i> Update'.html_safe, edit_purchase_path(purchase),class:'btn btn-info' %>
+
                       </td>
                     </tr>
                 <% end %>

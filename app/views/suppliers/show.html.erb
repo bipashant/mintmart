@@ -84,8 +84,8 @@
                     <tr>
                       <td class="center"><%= purchase.invoice_id %> </td>
                       <td class="center"><%= purchase.date %> </td>
-                      <td class="center"><%= purchase.items.sum(:quantity) %> </td>
-                      <td class="center">NRS <%= purchase.items.sum(:total) %> </td>
+                      <td class="center"><%= purchase.purchased_items.sum(:quantity) %> </td>
+                      <td class="center">NRS <%= purchase.purchased_items.sum(:total) %> </td>
                       <td class="center">
                         <%= link_to ' <i class="glyphicon glyphicon-zoom-in icon-white"></i> View'.html_safe, purchase_path(purchase),class:'btn btn-success' %>
                       </td>

@@ -1,17 +1,12 @@
-class ItemsController < ApplicationController
+class PurchasedItemsController < ApplicationController
 
   before_action :set_item, only: [:show, :edit, :update, :destroy]
-  require 'escper'
-  require 'serialport'
-
-
 
   def index
-    add_breadcrumb "ITEM", :items_path
-    @items = Item.all
+    @purchase_item = PurchasedItem.all
     respond_to do |format|
       format.html
-      format.json { render json: ItemDatatable.new(view_context) }
+      format.json { render json: PurchasedItem.new(view_context) }
     end
   end
 
@@ -35,12 +30,11 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.new(item_params)
-    @item.total = @item.unit_price.to_d * @item.quantity.to_d
-    @item.current_quantity = @item.quantity
-    if @item.save
-      @count = @item.purchase.items.count
-      @amount = @item.purchase.items.sum(:total)
+    @purchased_item = PurchasedItem.new(item_params)
+    @purchased_item.total = @purchased_item.unit_price.to_d * @purchased_item.quantity.to_d
+    if @purchased_item.save
+      @count = @purchased_item.purchase.purchased_items.count
+      @amount = @purchased_item.purchase.purchased_items.sum(:total)
       respond_to do |format|
         format.json { render json: {count: @count, total_amount: @amount}}
       end
@@ -48,14 +42,14 @@ class ItemsController < ApplicationController
   end
 
   def check_item_id
-    @item = Item.find_by_item_id(params[:purchased_item][:item_id])
+    @item = PurchasedItem.find_by_item_id(params[:purchased_item][:item_id])
     respond_to do |format|
       format.json { render json: !@item }
     end
   end
 
   def generate_item_id_for_open_item
-    @item =  Item.last ? (Item.last.id+1).to_s.rjust(6,'0') : '000001'
+    @item =  PurchasedItem.last ? (PurchasedItem.last.id+1).to_s.rjust(6,'0') : '000001'
     respond_to do |format|
       format.json { render json: {item_id: @item} }
     end
@@ -74,7 +68,7 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    @item.destroy
+    @purchase_item.destroy
     respond_to do |format|
       format.html { redirect_to items_url, notice: 'Item was successfully deleted.' }
       format.json { head :no_content }
@@ -82,11 +76,11 @@ class ItemsController < ApplicationController
   end
 
   private
-    def set_item
-      @item = Item.find(params[:id])
-    end
+  def set_item
+    @purchase_item = PurchasedItem.find(params[:id])
+  end
 
-    def item_params
-      params.require(:purchased_item).permit( :item_id, :name, :category_id, :quantity, :unit_price, :sell_price, :expiration_date, :purchase_id, :current_quantity,:margin)
-    end
+  def item_params
+    params.require(:purchased_item).permit( :item_id, :name, :category_id, :quantity, :unit_price, :sell_price, :expiration_date, :purchase_id, :current_quantity,:margin)
+  end
 end

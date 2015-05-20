@@ -12,81 +12,84 @@
                   <div class="pull-left col-md-3"><h4>Add Item</h4></div>
                 </div>
                 <div class="box col-md-12">
-                  <div class="box-inner col-md-12">
-                    <div class="box-content">
-                      <div class="row margin-bottom">
-                        <div class="col-md-9">
-                          <div class="col-md-6">
-                            <%= label_tag(:sell_item_id,'Item ID') %>
-                          </div>
-                          <div class="col-md-6">
-                            <%= text_field_tag :sell_item_id, nil, class: 'form-control',placeholder:' Iten ID' %>
-                            <span class="help-block text-danger text-danger" id="sale_customer_id_error"></span>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="row margin-bottom">
-                        <div class="col-md-9">
-                          <div class="col-md-6">
-                            <%= label_tag(:sell_item_name,'Item Name') %>
-                          </div>
-                          <div class="col-md-6">
-                            <%= text_field_tag :sell_item_name, nil, class: 'form-control',placeholder:'Item Name' %>
-                            <span class="help-block text-danger text-danger" id="item_quantity_error"></span>
+                  <form id = "add_quantity_form">
+                    <div class="box-inner col-md-12">
+                      <div class="box-content">
+                        <div class="row margin-bottom">
+                          <div class="col-md-9">
+                            <div class="col-md-6">
+                              <%= label_tag(:sell_item_id,'Item ID') %>
+                            </div>
+                            <div class="col-md-6">
+                              <%= text_field_tag :sell_item_id, nil, class: 'form-control',placeholder:' Iten ID' %>
+                              <span class="help-block text-danger text-danger" id="sell_item_id_error"></span>
+                            </div>
                           </div>
                         </div>
-                      </div>
 
-
-                      <div class="row margin-bottom">
-                        <div class="col-md-9">
-                          <div class="col-md-6">
-                            <%= label_tag(:sell_item_rate,'Rate') %>
-                          </div>
-                          <div class="col-md-6">
-                            <%= text_field_tag :sell_item_rate, nil, value:'0',class: 'form-control',placeholder:'Rate' %>
-                            <span class="help-block text-danger text-danger" id="sale_discount_error"></span>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="row margin-bottom">
-                        <div class="col-md-9">
-                          <div class="col-md-6">
-                            <%= label_tag(:sell_item_quantity,'Quantity') %>
-                          </div>
-                          <div class="col-md-6">
-                            <%= text_field_tag :sell_item_quantity, nil, class: 'form-control',placeholder:'Quantity' %>
-                            <span class="help-block text-danger text-danger double_width" id="sell_item_quantity_error"></span>
+                        <div class="row margin-bottom">
+                          <div class="col-md-9">
+                            <div class="col-md-6">
+                              <%= label_tag(:sell_item_name,'Item Name') %>
+                            </div>
+                            <div class="col-md-6">
+                              <%= text_field_tag :sell_item_name, nil, class: 'form-control',placeholder:'Item Name' %>
+                              <span class="help-block text-danger text-danger" id="sell_item_name_error"></span>
+                            </div>
                           </div>
                         </div>
-                      </div>
 
 
-                      <div class="row margin-bottom">
-                        <div class="col-md-9">
-                          <div class="col-md-6">
-                            <%= label_tag(:sell_total_amount,'Total Amount') %>
+                        <div class="row margin-bottom">
+                          <div class="col-md-9">
+                            <div class="col-md-6">
+                              <%= label_tag(:sell_item_rate,'Rate') %>
+                            </div>
+                            <div class="col-md-6">
+                              <%= text_field_tag :sell_item_rate, nil, value:'0',class: 'form-control',placeholder:'Rate' %>
+                              <span class="help-block text-danger text-danger" id="sell_item_rate_error"></span>
+                            </div>
                           </div>
-                          <div class="col-md-6">
-                            <%= text_field_tag :sell_total_amount,nil, class: 'form-control',placeholder:'Total Amount' %>
+                        </div>
 
-                            <span class="help-block text-danger text-danger" id="item_quantity_error"></span>
+                        <div class="row margin-bottom">
+                          <div class="col-md-9">
+                            <div class="col-md-6">
+                              <%= label_tag(:sell_item_quantity,'Quantity') %>
+                            </div>
+                            <div class="col-md-6">
+                              <%= text_field_tag :sell_item_quantity, nil, class: 'form-control',placeholder:'Quantity' %>
+                              <span class="help-block text-danger text-danger double_width" id="sell_item_quantity_error"></span>
+
+                              <input name="curent_item_quantity" type="hidden" value="" id="curent_item_quantity"/>
+                            </div>
+                          </div>
+                        </div>
+
+
+                        <div class="row margin-bottom">
+                          <div class="col-md-9">
+                            <div class="col-md-6">
+                              <%= label_tag(:sell_total_amount,'Total Amount') %>
+                            </div>
+                            <div class="col-md-6">
+                              <%= text_field_tag :sell_total_amount,nil, class: 'form-control',placeholder:'Total Amount' %>
+
+                              <span class="help-block text-danger text-danger" id="sell_total_amount_error"></span>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </form>
+
                 </div>
               </div>
         </div>
       </div>
       <div class="modal-footer">
-        <div class="modal-footer">
           <a href="#" class="btn btn-default" id = 'sell_cancel_items' data-dismiss="modal">Close</a>
-          <a href="#" class="btn btn-primary" id = 'sell_save_items' data-dismiss="modal">Save changes</a>
-        </div>
+          <a href="#" class="btn btn-primary" id = 'sell_save_items'>Save changes</a>
       </div>
     </div>
   </div>

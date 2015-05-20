@@ -56,7 +56,6 @@ $(document).ready(function () {
         {
             returnable_amount = 0;
         }
-        debugger;
         $('#checkout_returnable_amount').val(returnable_amount);
     });
     var calculate_retunable_amount = function(){
@@ -70,7 +69,6 @@ $(document).ready(function () {
         {
             returnable_amount = 0;
         }
-        debugger;
         $('#checkout_returnable_amount').val(returnable_amount);
     }
 });

@@ -3,11 +3,18 @@ Rails.application.routes.draw do
   devise_for :users
   resources :customers
   resources :suppliers
+  resources :purchased_items do
+    collection do
+      get 'check_item_id'
+      get 'generate_item_id_for_open_item'
+    end
+  end
 
   resources :sales do
     collection do
       get 'check_item_availabilty'
       get 'find_item'
+      post 'generate_reports'
     end
 
   end
@@ -27,7 +34,7 @@ Rails.application.routes.draw do
   end
   resources :purchases do
     collection do
-
+      get 'activate_purchase'
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,5 +1,5 @@
 class PurchasesController < ApplicationController
-  before_action :set_purchase, only: [:show, :edit, :update, :destroy, :load_item_list]
+  before_action :set_purchase, only: [:show, :edit, :update, :destroy, :load_item_list, :activate_purchase]
 
   respond_to :html
 
@@ -9,11 +9,11 @@ class PurchasesController < ApplicationController
   end
 
   def show
-    @items = @purchase.items
-    @item = Item.new
+    @purchased_items = @purchase.purchased_items
+    @purchased_item = PurchasedItem.new
     @categories = Category.all
 
-    idt = ItemDatatable.new(view_context)
+    idt = PurchasedItemDatatable.new(view_context)
     idt.set_purchase_id(@purchase.id)
 
     respond_to do |format|
@@ -34,7 +34,7 @@ class PurchasesController < ApplicationController
   end
 
   def create
-    @purchase = Purchase.new(purchase_params)
+    @purchase = Purchase.new(purchase_params.merge({status: 0}))
     @purchase.save
     respond_with(@purchase)
   end
@@ -42,6 +42,17 @@ class PurchasesController < ApplicationController
   def update
     @purchase.update(purchase_params)
     respond_with(@purchase)
+  end
+
+  def activate_purchase
+    @purchase.update(status: 1)
+    @purchase.purchased_items.each do |item|
+      Item.create(item.attributes.except('id').merge({current_quantity: item.quantity}))
+    end
+    respond_to do |format|
+      format.json { render json: {purchase: @purchase}}
+    end
+
   end
 
   def destroy

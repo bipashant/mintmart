@@ -30,45 +30,45 @@ $(document).ready(function () {
         $.ajax({
             dataType: 'json',
             cache: false,
-            url:'/items/generate_item_id_for_open_item',
+            url:'/purchased_items/generate_item_id_for_open_item',
             timeout: 20000,
             error: function (data) {
-                alert('error');
+                alert('Something went wrong');
             },
             success: function (data) {
-                $('#item_item_id').val(data.item_id);
+                $('#purchased_item_item_id').val(data.item_id);
             }
         });
     });
 
-    $("#new_item").validate({
+    $("#new_purchased_item").validate({
         rules: {
-            "item[item_id]": {
-                remote: '/items/check_item_id',
+            "purchased_item[item_id]": {
+                remote: '/purchased_items/check_item_id',
                 required: true
             },
-            "item[name]": {
+            "purchased_item[name]": {
                 required: true
             },
-            "item[category_id]": {
+            "purchased_item[category_id]": {
                 required: true
             },
-            "item[quantity]": {
+            "purchased_item[quantity]": {
                 required: true
             },
-            "item[unit_price]": {
+            "purchased_item[unit_price]": {
                 required: true,
                 number: true
             },
-            "item[sell_price]": {
+            "purchased_item[sell_price]": {
                 required: true,
                 number: true
             },
-            "item[expiration_date]": {
+            "purchased_item[expiration_date]": {
                 required: true,
                 date: true
             },
-            "item_margin": {
+            "purchased_item[margin]": {
                 required: true,
                 number: true
             }
@@ -76,28 +76,28 @@ $(document).ready(function () {
         },
         // Specify the validation error messages
         messages: {
-            "item[item_id]": {
+            "purchased_item[item_id]": {
                 remote: 'Already Taken.',
                 required: 'Item ID is required.'
             },
-            "item[name]": {
+            "purchased_item[name]": {
                 required: 'Item Name is required'
             },
-            "item[category_id]": {
+            "purchased_item[category_id]": {
                 required: 'Category is required'
             },
-            "item[quantity]": {
+            "purchased_item[quantity]": {
                 required: 'Quantity is required'
             },
-            "item[unit_price]": {
+            "purchased_item[unit_price]": {
                 required: 'Unit Price is required',
                 number: 'Invalid Unit Price'
             },
-            "item[sell_price]": {
+            "purchased_item[sell_price]": {
                 required: 'Sell Price is required',
                 number: 'Invalid Sell Price'
             },
-            "item_margin": {
+            "purchased_item[margin]": {
                 required: 'Margin  is required.',
                 number: 'Invalid Margin Percentage'
             }
@@ -119,15 +119,12 @@ $(document).ready(function () {
                 $('#total_amount').html(data.total_amount);
                 $('#status_div_purchase').html('Item successfully created.').fadeIn(10).fadeOut(5000);
                 itemDataTable.fnDraw();
+                $('#items-main-table-new thead tr th:last-child').css('width','316px');
+
 
             });
             return false; // prevents normal behaviour
         }
     });
-
-    $("#tabs > li").click(function () {
-        return false;
-    });
-
 });
 
